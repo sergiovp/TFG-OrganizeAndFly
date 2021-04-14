@@ -13,7 +13,7 @@ const router: express.Router = express.Router();
  * User's routes:
  ***********************/
 
-router.post('/login', async function (req: express.Request, res: express.Response) {
+router.post('/login', async function (req: express.Request, res: express.Response): Promise<any> {
     const { email, pass } = req.body;
 
     const response = await userController.logIn(email, pass);

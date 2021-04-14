@@ -3,7 +3,7 @@ import * as errorFunctions from '../helpers/errorsFunctions';
 import * as validations from '../helpers/validations';
 import * as generations from '../helpers/generations';
 
-export async function logIn(email: string, pass: string) {
+export async function logIn(email: string, pass: string): Promise<any> {
     if (!email || !pass) {
         return errorFunctions.getBadArguments();
     }
