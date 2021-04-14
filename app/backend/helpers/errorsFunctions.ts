@@ -1,7 +1,7 @@
 import { signErrors } from './errorsValues';
 import status from './statusCodes';
 
-export function getBadArguments() {
+export function getBadArguments(): object {
     return {
         msg: {
             error: { BadArguments: signErrors.BadArguments },
@@ -10,7 +10,7 @@ export function getBadArguments() {
     };
 }
 
-export function getWrongData() {
+export function getWrongData(): object {
     return {
         msg: {
             error: { WrongData: signErrors.WrongData },
@@ -19,9 +19,7 @@ export function getWrongData() {
     };
 }
 
-
-
-export function getBDError(err: any) {
+export function getBDError(err: any): object {
     return {
         msg: {
             error: { BDError: err.message },
