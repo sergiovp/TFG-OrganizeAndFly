@@ -1,0 +1,19 @@
+{
+  "name": "tfg-organizeandfly",
+  "version": "1.0.0",
+  "description": "Development of the final university project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergiovp/TFG-OrganizeAndFly.git"
+  },
+  "author": "Sergio Vela Pelegrina",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sergiovp/TFG-OrganizeAndFly/issues"
+  },
+  "homepage": "https://github.com/sergiovp/TFG-OrganizeAndFly#readme"
+}
