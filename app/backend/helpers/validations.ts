@@ -12,3 +12,13 @@ export function validateEmail(email: string): boolean {
 export function validateSecurePass(pass: string): boolean {
     return pass.length >= 6 ? true : false;
 }
+
+const DUPLICATED_EMAIL_ERROR = 'duplicate key value violates unique constraint';
+
+export function validateDuplicateEmail(error: object) {
+    const errorStr = JSON.stringify(error);
+    if (errorStr.includes(DUPLICATED_EMAIL_ERROR)) {
+        return true;
+    }
+    return false;
+}
