@@ -29,6 +29,17 @@ export async function logInDB(email: string, pass: string): Promise<any> {
     }
 }
 
+export async function setProfileDB(userID: string, email?: string, pass?: string): Promise<any> {
+    try {
+        return await dataBase(TABLE_NAME)
+            .first()
+            .where(ID_DB_NAME, userID)
+            .update({ email: email, pass: pass });
+    } catch (err) {
+        return getBDError(err);
+    }
+}
+
 export async function getPass(userID: string): Promise<any> {
     try {
         return await dataBase(TABLE_NAME)
