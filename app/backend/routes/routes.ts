@@ -13,6 +13,14 @@ const router: express.Router = express.Router();
  * User's routes:
  ***********************/
 
+router.post('/signup', async function (req: express.Request, res: express.Response): Promise<any> {
+    const { email, pass, passConfirmation } = req.body;
+
+    const response = await userController.signUp(email, pass, passConfirmation);
+
+    res.status(response.status || status.Created).send(response.msg || response.token);
+});
+
 router.post('/login', async function (req: express.Request, res: express.Response): Promise<any> {
     const { email, pass } = req.body;
 
