@@ -4,6 +4,7 @@ import { getBDError } from '../helpers/errorsFunctions';
 const TABLE_NAME = 'users';
 const ID_DB_NAME = 'user_id';
 const EMAIL_DB_NAME = 'email';
+const PASS_DB_NAME = 'pass';
 
 export async function signUpDB(userID: string, email:string, pass: string): Promise<any> {
     try {
@@ -23,6 +24,17 @@ export async function logInDB(email: string, pass: string): Promise<any> {
         return await dataBase(TABLE_NAME)
             .first()
             .where(EMAIL_DB_NAME, email);
+    } catch (err) {
+        return getBDError(err);
+    }
+}
+
+export async function getPass(userID: string): Promise<any> {
+    try {
+        return await dataBase(TABLE_NAME)
+            .select(PASS_DB_NAME)
+            .first()
+            .where(ID_DB_NAME, userID);
     } catch (err) {
         return getBDError(err);
     }
