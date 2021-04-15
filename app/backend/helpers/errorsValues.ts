@@ -6,3 +6,8 @@ export const enum signErrors {
     UnsafePass = "The password must be at least 6 characters long",
     WrongData = "The entered data is incorrect, please, try again",
 };
+
+export const enum tokenErrors {
+    TokenDoesNotProvided = "There is not any token provided. Unauthorized access",
+    TokenDoesNotMatch = "The token provided is not correct. Unauthorized access",
+};
