@@ -25,8 +25,8 @@ export async function signUp(email: string, pass: string, passConfirmation: stri
 
     const userData = await userModel.signUpDB(userID, email, encryptedPass);
 
-    if (userData.error) {
-        if (validations.validateDuplicateEmail(userData.error)) {
+    if (userData.msg?.error) {
+        if (validations.validateDuplicateEmail(userData.msg?.error)) {
             return errorFunctions.getDuplicateEmail();
         }
         return userData;
