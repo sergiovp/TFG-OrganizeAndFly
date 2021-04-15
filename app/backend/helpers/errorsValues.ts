@@ -9,6 +9,8 @@ const enum errorsValues {
     TokenDoesNotProvided = "There is not any token provided. Unauthorized access",
     TokenDoesNotMatch = "The token provided is not correct. Unauthorized access",
     UserNotDeleted = "User could not be deleted",
+    ThereIsNothingToMod = "There is nothing to be modified",
+    NotNewPass = "You must entered a new password",
 };
 
 export default errorsValues;

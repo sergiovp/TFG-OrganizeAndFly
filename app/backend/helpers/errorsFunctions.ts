@@ -19,6 +19,24 @@ export function getUserNotFound(): object {
     };
 }
 
+export function getNothingToModify(): object {
+    return {
+        msg: {
+            error: { ThereIsNothingToMod: errorsValues.ThereIsNothingToMod },
+        },
+        status: status.BadRequest,
+    };
+}
+
+export function getNotNewPass(): object {
+    return {
+        msg: {
+            error: { NotNewPass: errorsValues.NotNewPass },
+        },
+        status: status.BadRequest,
+    };
+}
+
 export function getUserNotDeleted(): object {
     return {
         msg: {
