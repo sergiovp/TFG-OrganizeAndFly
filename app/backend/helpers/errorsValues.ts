@@ -8,6 +8,7 @@ const enum errorsValues {
     UserNotFound = "User could not be found",
     TokenDoesNotProvided = "There is not any token provided. Unauthorized access",
     TokenDoesNotMatch = "The token provided is not correct. Unauthorized access",
+    UserNotDeleted = "User could not be deleted",
 };
 
 export default errorsValues;

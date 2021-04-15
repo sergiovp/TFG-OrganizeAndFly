@@ -19,6 +19,15 @@ export function getUserNotFound(): object {
     };
 }
 
+export function getUserNotDeleted(): object {
+    return {
+        msg: {
+            error: { UserNotDeleted: errorsValues.UserNotDeleted },
+        },
+        status: status.Notfound,
+    };
+}
+
 export function getWrongData(): object {
     return {
         msg: {
