@@ -2,7 +2,54 @@ import * as userModel from './userModel';
 import * as errorFunctions from '../helpers/errorsFunctions';
 import * as validations from '../helpers/validations';
 import * as generations from '../helpers/generations';
-import { userDeleted } from '../helpers/successOperations';
+import { userDeleted, profileUpdated } from '../helpers/successOperations';
+
+async function setEmail(userID: string, email: string): Promise<object> {
+    if (!validations.validateEmail(email)) {
+        return errorFunctions.getEmailBadSintax();
+    }
+
+    const userData = await userModel.setProfileDB(userID, email);
+
+    if (userData.msg?.error) {
+        if (validations.validateDuplicateEmail(userData.msg?.error)) {
+            return errorFunctions.getDuplicateEmail();
+        }
+        return userData;
+    }
+
+    return profileUpdated();
+}
+
+async function setPass(userID: string, actualPass: string, newPass?: string, email?: string) {
+    if (!newPass) {
+        return errorFunctions.getNotNewPass();
+    }
+
+    const userPass = await userModel.getPass(userID);
+
+    if (userPass.msg?.error) {
+        return userPass;
+    }
+
+    if (! await validations.validateEncryptedPass(actualPass, userPass.pass)) {
+        return errorFunctions.getWrongData();
+    }
+
+    if (!validations.validateSecurePass(newPass)) {
+        return errorFunctions.getSecurePass();
+    }
+
+    const newPassEncrypted = await generations.generateEncryptedPass(newPass);
+
+    await userModel.setProfileDB(userID, undefined, newPassEncrypted);
+
+    if (email) {
+        return setEmail(userID, email);
+    }
+
+    return profileUpdated();
+}
 
 export async function signUp(email: string, pass: string, passConfirmation: string): Promise<any> {
     if (!email || !pass || !passConfirmation) {
