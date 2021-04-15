@@ -4,7 +4,9 @@
   "description": "Development of the final university project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "nodemon app/backend/server.ts"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
     "@types/uuid": "^8.3.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.7",
     "ts-node": "^9.1.1",
