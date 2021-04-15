@@ -10,6 +10,15 @@ export function getBadArguments(): object {
     };
 }
 
+export function getUserNotFound(): object {
+    return {
+        msg: {
+            error: { UserNotFound: errorsValues.UserNotFound },
+        },
+        status: status.Notfound,
+    };
+}
+
 export function getWrongData(): object {
     return {
         msg: {
