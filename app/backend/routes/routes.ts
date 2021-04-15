@@ -29,6 +29,14 @@ router.post('/login', async function (req: express.Request, res: express.Respons
     res.status(response.status || status.Success).send(response.msg || response.token);
 });
 
+router.put('/profile/:userID', async function (req: express.Request, res: express.Response): Promise<any> {
+    const userID = req.params.userID;
+
+    const response = await userController.setProfile(userID);
+
+    res.status(response.status || status.Success).send(response.msg);
+});
+
 router.get('/profile/:userID', async function (req: express.Request, res: express.Response): Promise<any> {
     const userID = req.params.userID;
 
