@@ -2,6 +2,7 @@ import * as userModel from './userModel';
 import * as errorFunctions from '../helpers/errorsFunctions';
 import * as validations from '../helpers/validations';
 import * as generations from '../helpers/generations';
+import { userDeleted } from '../helpers/successOperations';
 
 export async function signUp(email: string, pass: string, passConfirmation: string): Promise<any> {
     if (!email || !pass || !passConfirmation) {
@@ -58,6 +59,19 @@ export async function logIn(email: string, pass: string): Promise<any> {
     const token = generations.generateUserToken(userData);
 
     return { token: token };
+}
+
+export async function deleteProfile(userID: string): Promise<any> {
+    const userData = await userModel.deleteProfileDB(userID);
+
+    if (!(typeof(userData) == 'number')) {
+        return userData;
+    }
+
+    if (userData !== 1) {
+        return errorFunctions.getUserNotDeleted();
+    }
+    return userDeleted();
 }
 
 export async function getProfile(userID: string): Promise<any> {
