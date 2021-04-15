@@ -8,3 +8,12 @@ export function userDeleted(): object {
         status: status.Success,
     };
 }
+
+export function profileUpdated(): object {
+    return {
+        msg: {
+            info: 'User profile was updated successfully'
+        },
+        status: status.Success,
+    };
+}
