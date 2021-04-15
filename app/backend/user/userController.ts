@@ -108,6 +108,23 @@ export async function logIn(email: string, pass: string): Promise<any> {
     return { token: token };
 }
 
+export async function setProfile(userID: string, email?: string, actualPass?: string, newPass?: string): Promise<any> {
+    if (!email && !actualPass) {
+        return errorFunctions.getNothingToModify();
+    }
+
+    if (email && !actualPass) {
+        return await setEmail(userID, email);
+    }
+    else if (!email && actualPass) {
+        return await setPass(userID, actualPass, newPass);
+    }
+
+    else if (email && actualPass) {
+        return await setPass(userID, actualPass, newPass, email);
+    }
+}
+
 export async function deleteProfile(userID: string): Promise<any> {
     const userData = await userModel.deleteProfileDB(userID);
 
