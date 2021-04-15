@@ -59,3 +59,12 @@ export async function logIn(email: string, pass: string): Promise<any> {
 
     return { token: token };
 }
+
+export async function getProfile(userID: string): Promise<any> {
+    const userData = await userModel.getProfileDB(userID);
+
+    if (!userData) {
+        return errorFunctions.getUserNotFound();
+    }
+    return userData;
+}
