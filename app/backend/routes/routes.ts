@@ -1,10 +1,5 @@
-/**
- * API routes file
- */
-
 import express from 'express';
 import * as userController from '../user/userController';
-import * as userModel from '../user/userModel';
 import status from '../helpers/statusCodes'; 
 
 const router: express.Router = express.Router();
@@ -31,8 +26,9 @@ router.post('/login', async function (req: express.Request, res: express.Respons
 
 router.put('/profile/:userID', async function (req: express.Request, res: express.Response): Promise<any> {
     const userID = req.params.userID;
+    const { email, actualPass, newPass } = req.body;
 
-    const response = await userController.setProfile(userID);
+    const response = await userController.setProfile(userID, email, actualPass, newPass);
 
     res.status(response.status || status.Success).send(response.msg);
 });
@@ -50,8 +46,7 @@ router.get('/profile/:userID', async function (req: express.Request, res: expres
 
     const response = await userController.getProfile(userID);
 
-    res.status(response.status || status.Success).send(response.msg);
-
+    res.status(response.status || status.Success).send(response.msg || response);
 });
 
 export default router;
