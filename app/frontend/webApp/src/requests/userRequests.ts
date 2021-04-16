@@ -37,6 +37,19 @@ export async function getProfile(userID: string) {
     }
 }
 
+export async function setProfile(userID: string, email?: string, actualPass?: string, newPass?: string) {
+    try {
+        return await axios.put(URL + userID, {
+            headers: HEADER,
+            email,
+            actualPass,
+            newPass
+        });
+    } catch (err) {
+        return err.response.data;
+    }
+}
+
 export async function deleteProfile(userID: string) {
     try {
         return await axios.delete(URL + userID, {
