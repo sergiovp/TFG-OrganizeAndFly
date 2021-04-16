@@ -15,3 +15,14 @@ export async function signUp(email: string, pass: string, passConfirmation: stri
         return err.response.data;
     }
 }
+
+export async function logIn(email: string, pass: string) {
+    try {
+        return await axios.post(URL + 'login', {
+            email, 
+            pass
+        });
+    } catch (err) {
+        return err.response.data;
+    }
+}
