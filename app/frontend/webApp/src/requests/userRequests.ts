@@ -36,3 +36,13 @@ export async function getProfile(userID: string) {
         return err.response.data;
     }
 }
+
+export async function deleteProfile(userID: string) {
+    try {
+        return await axios.delete(URL + userID, {
+            headers: HEADER
+        });
+    } catch (err) {
+        return err.response.data;
+    }
+}
