@@ -29,7 +29,7 @@ export async function logIn(email: string, pass: string) {
 
 export async function getProfile(userID: string) {
     try {
-        return await axios.get(URL + userID, {
+        return await axios.get(URL + 'profile/' + userID, {
             headers: HEADER
         });
     } catch (err) {
@@ -39,7 +39,7 @@ export async function getProfile(userID: string) {
 
 export async function setProfile(userID: string, email?: string, actualPass?: string, newPass?: string) {
     try {
-        return await axios.put(URL + userID, {
+        return await axios.put(URL + 'profile/' + userID, {
             headers: HEADER,
             email,
             actualPass,
@@ -52,7 +52,7 @@ export async function setProfile(userID: string, email?: string, actualPass?: st
 
 export async function deleteProfile(userID: string) {
     try {
-        return await axios.delete(URL + userID, {
+        return await axios.delete(URL + 'profile/' + userID, {
             headers: HEADER
         });
     } catch (err) {
