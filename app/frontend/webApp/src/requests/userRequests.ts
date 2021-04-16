@@ -26,3 +26,13 @@ export async function logIn(email: string, pass: string) {
         return err.response.data;
     }
 }
+
+export async function getProfile(userID: string) {
+    try {
+        return await axios.get(URL + userID, {
+            headers: HEADER
+        });
+    } catch (err) {
+        return err.response.data;
+    }
+}
