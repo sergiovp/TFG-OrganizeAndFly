@@ -1,0 +1,34 @@
+.HomeNotAuthMainContent__main-container {
+    padding-top: 4em;
+    padding-bottom: 2em;
+}
+
+.HomeNotAuthMainContent__up-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.HomeNotAuthMainContent_txt-container {
+    font-size: 3rem;
+}
+
+.HomeNotAuthMainContent_txt-container h2 {
+    font-size: 3rem;
+}
+
+.HomeNotAuthMainContent_txt-container h3 {
+    font-size: 2rem;
+}
+
+.HomeNotAuthMainContent__img-container {
+    text-align: center;
+}
+
+.HomeNotAuthMainContent__img-container img {
+    min-width: 8cm; 
+    min-height: 10cm;
+    max-width: 6cm; 
+    max-height: 2cm;
+}
