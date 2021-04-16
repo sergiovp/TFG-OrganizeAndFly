@@ -1,6 +1,7 @@
 import express from 'express';
 import * as userController from '../user/userController';
-import status from '../helpers/statusCodes'; 
+import status from '../helpers/statusCodes';
+import verifyUserToken from '../middlewares/verifyAuth';
 
 const router: express.Router = express.Router();
 
@@ -24,7 +25,7 @@ router.post('/login', async function (req: express.Request, res: express.Respons
     res.status(response.status || status.Success).send(response.msg || response.token);
 });
 
-router.put('/profile/:userID', async function (req: express.Request, res: express.Response): Promise<any> {
+router.put('/profile/:userID', verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
     const userID = req.params.userID;
     const { email, actualPass, newPass } = req.body;
 
@@ -33,7 +34,7 @@ router.put('/profile/:userID', async function (req: express.Request, res: expres
     res.status(response.status || status.Success).send(response.msg);
 });
 
-router.delete('/profile/:userID', async function (req: express.Request, res: express.Response): Promise<any> {
+router.delete('/profile/:userID', verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
     const userID = req.params.userID;
 
     const response = await userController.deleteProfile(userID);
@@ -41,7 +42,7 @@ router.delete('/profile/:userID', async function (req: express.Request, res: exp
     res.status(response.status || status.Success).send(response.msg);
 });
 
-router.get('/profile/:userID', async function (req: express.Request, res: express.Response): Promise<any> {
+router.get('/profile/:userID', verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
     const userID = req.params.userID;
 
     const response = await userController.getProfile(userID);
