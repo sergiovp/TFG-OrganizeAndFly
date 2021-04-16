@@ -15,8 +15,8 @@ export default function Footer() {
                         <h6>About</h6>
                         <p className={`${COMP_NAME}__info-text`}>
                             Final thesis in computer engineering at University of Granada.
-                            Organize&amp;Go is an open source web and mobile app for organising and planning
-                            made with love by his author.  
+                            Organize&amp;Fly is an open source web and mobile app for organising and planning
+                            made with love by his author.
                         </p>
                     </Col>
                     <Col sm="12" md="3">
