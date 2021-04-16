@@ -19,6 +19,7 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
+/coverage
 coverage
 *.lcov
 
@@ -36,10 +37,20 @@ bower_components
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
+/build
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Dependency directories
 node_modules/
 jspm_packages/
+/.pnp
+.pnp.js
 
 # TypeScript v1 declaration files
 typings/
