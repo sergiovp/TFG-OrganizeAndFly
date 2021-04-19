@@ -1,10 +1,10 @@
-import express from 'express';
+import express, { NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { getTokenNotProvided, getTokenNotMatch } from '../helpers/errorsFunctions';
+import { getTokenNotProvided, getTokenNotMatch, getNoSession } from '../helpers/errorsFunctions';
 
 const SECRET = 'app_secret_key';
 
-export default function verifyUserToken(req: express.Request, res: express.Response, next: Function) {
+export function verifyUserToken(req: express.Request, res: express.Response, next: NextFunction) {
     const header = req.headers['authorization'];
 
     const token = header && header.split(' ')[1];
@@ -22,4 +22,13 @@ export default function verifyUserToken(req: express.Request, res: express.Respo
             }
         });
     }
+}
+
+export function verifyUser(req: express.Request, res: express.Response, next: NextFunction) {
+    if (req.session && req.session.userToken) {
+        return next();
+    }
+    const err = getNoSession();
+
+    return res.status(err.status).send(err.error);
 }
