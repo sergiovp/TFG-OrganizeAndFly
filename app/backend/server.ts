@@ -27,7 +27,7 @@ app.use(
 	session({
 		secret: 'app_secret_key',
 		resave: true,
-		saveUninitialized: true,
+		saveUninitialized: false,
 		store,
 	}),
 );
