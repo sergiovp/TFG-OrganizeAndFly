@@ -21,6 +21,8 @@ router.post('/signup', async function (req: express.Request, res: express.Respon
 
     const response = await userController.signUp(email, pass, passConfirmation);
 
+    response.msg ? '' : req.session.userToken = response.token;
+
     res.status(response.status || status.Created).send(response.msg || response.token);
 });
 
