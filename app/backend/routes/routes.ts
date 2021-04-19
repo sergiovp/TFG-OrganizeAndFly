@@ -29,6 +29,8 @@ router.post('/login', async function (req: express.Request, res: express.Respons
 
     const response = await userController.logIn(email, pass);
 
+    response.msg ? '' : req.session.userToken = response.token;
+
     res.status(response.status || status.Success).send(response.msg || response.token);
 });
 
