@@ -8,8 +8,11 @@ const app = express();
 // Set port
 const PORT: number = 7777;
 
-// Express middleware to enable CORS
-app.use(cors());
+// Express middleware to enable CORS with credentials from our frontend
+app.use(cors({
+	origin: 'http://localhost:3000',
+	credentials : true
+}));
 
 // Parse requests of content-type - application/json
 app.use(express.json());
