@@ -66,7 +66,11 @@ router.get('/session', verifyUser, function (req: express.Request, res: express.
 
     const userData = decodeJWT(token);
 
-    res.send(userData);
+    res.status(200).send(userData);
+});
+
+router.get('/token', verifyUser, function (req: express.Request, res: express.Response) {
+    res.status(200).send(req.session.userToken);
 });
 
 export default router;
