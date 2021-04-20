@@ -1,4 +1,4 @@
-import dataBase from '../dataBase/instanceDB';
+import { knex as dataBase }  from '../dataBase/instanceDB';
 import { getBDError } from '../helpers/errorsFunctions';
 
 const TABLE_NAME = 'users';
