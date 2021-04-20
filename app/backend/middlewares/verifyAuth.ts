@@ -18,7 +18,11 @@ export function verifyUserToken(req: express.Request, res: express.Response, nex
                 res.status(getTokenNotMatch().status).send(getTokenNotMatch().msg);
             }
             else {
-                next();
+                if (req.session.userToken === token) {
+                    return next();
+                } else {
+                    return res.send("No coincide los tokens");
+                }
             }
         });
     }
@@ -30,5 +34,5 @@ export function verifyUser(req: express.Request, res: express.Response, next: Ne
     }
     const err = getNoSession();
 
-    return res.status(err.status).send(err.error);
+    return res.status(200).send(err.error);
 }
