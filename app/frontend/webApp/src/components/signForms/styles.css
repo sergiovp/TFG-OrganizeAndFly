@@ -1,0 +1,54 @@
+.SignForms__main-container {
+    padding: 30px;
+}
+
+.SignForms__remember-me {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.SignForms__logo {
+    height: 60px;
+    width: 60px;
+    margin-top: 0;
+    margin-bottom: 1.2em;
+}
+
+.SignForms__remember-me p {
+    margin-top: 1.14289em;
+}
+
+.SignForms__typo-back {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.SignForms__typo-back img {
+    padding-left: 1em;
+}
+
+.SignForms__signin {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.SignForms__signin a {
+    margin-left: 0.2rem;
+}
+
+.SignForms__error {
+    color: red;
+    margin: 0;
+}
+
+.SignForms__general-error {
+    color: red;
+}
+
+.SignForms__typo-back > h1 > span {
+    color: #302c9b;
+    font-family: 'Anton', sans-serif;
+    font-size: 0.9em;
+}
