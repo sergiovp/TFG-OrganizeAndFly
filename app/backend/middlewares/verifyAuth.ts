@@ -34,5 +34,5 @@ export function verifyUser(req: express.Request, res: express.Response, next: Ne
     }
     const err = getNoSession();
 
-    return res.status(200).send(err.error);
+    return res.status(err.status).send(err.msg);
 }
