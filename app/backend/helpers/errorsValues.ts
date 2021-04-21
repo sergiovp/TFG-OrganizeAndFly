@@ -11,6 +11,7 @@ const enum errorsValues {
     UserNotDeleted = "User could not be deleted",
     ThereIsNothingToMod = "There is nothing to be modified",
     NotNewPass = "You must entered a new password",
+    NoSession = "No established session with the server, please, login",
 };
 
 export default errorsValues;

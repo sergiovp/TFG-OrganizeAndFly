@@ -117,3 +117,12 @@ export function getTokenNotMatch() {
         status: status.Unauthorized,
     };
 }
+
+export function getNoSession() {
+    return {
+        msg: {
+            error: { NoSession: errorsValues.NoSession },
+        },
+        status: status.Unauthorized,
+    };
+}
