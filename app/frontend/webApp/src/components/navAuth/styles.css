@@ -1,0 +1,30 @@
+.NavAuth__nav-logo {
+    height: 32px;
+    width: 32px;
+}
+
+.NavAuth__nav-container {
+    display: flex;
+    align-items: center;
+}
+
+.NavAuth__nav-tittle {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5em;
+}
+
+.NavAuth__nav-message {
+    position: relative;
+    margin-left: 15em;
+}
+
+#\{\`\$\{COMP_NAME\}__nav-welcome\`\} {
+    color: black;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+}
+
+#\{\`\$\{COMP_NAME\}__nav-welcome\`\} > span {
+    color: blueviolet;
+    text-decoration: underline;
+}
