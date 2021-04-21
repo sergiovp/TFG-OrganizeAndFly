@@ -11,7 +11,7 @@ export default function HomeNotAuthMainContent() {
             <Row className={`${COMP_NAME}__up-container`}>
                 <Col md="7" className={`${COMP_NAME}__txt-container`}>
                     <h2>Hi, there!</h2>
-                    <h3>Welcome to Organize&amp;Go</h3>
+                    <h3>Welcome to Organize&amp;Fly</h3>
                     <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                         sed do eiusmod tempor incididunt ut labore et dolore magna 
                         aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
