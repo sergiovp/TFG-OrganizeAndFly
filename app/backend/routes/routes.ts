@@ -44,7 +44,7 @@ router.put('/profile/:userID', verifyUser, verifyUserToken, async function (req:
     res.status(response.status || status.Success).send(response.msg);
 });
 
-router.delete('/profile/:userID', verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+router.delete('/profile/:userID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
     const userID = req.params.userID;
 
     const response = await userController.deleteProfile(userID);
