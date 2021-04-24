@@ -1,14 +1,31 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import HomeAuthPage from './pages/homeAuth/homeAuth';
+import AuthenticatedRoute from './components/authenticatedRoute';
+import UnAuthenticatedRoute from './components/unAuthenticatedRoute';
+import HomeNotAuthPage from './pages/homeNotAuth/HomeNotAuthPage';
+import MainWrapperPage from './pages/mainWrapper/MainWrapperPage';
+import LogInPage from './pages/logIn/LogInPage';
+import SignUpPage from './pages/signUp/SignUpPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider } from 'react-redux';
+import generateStore from './redux/store';
 
 function App() {
+	const store = generateStore();
+
 	return (
-		<Router>
-			<Switch>
-				<Route exact path={ '/' } component={ HomeAuthPage } />
-			</Switch>
-		</Router>
+		<Provider store={store}>
+			<Router >
+				<Switch>
+					<UnAuthenticatedRoute exact path={ '/' } component={ HomeNotAuthPage } />
+					<UnAuthenticatedRoute exact path={ '/login' } component={ LogInPage } />
+					<UnAuthenticatedRoute exact path={ '/signup' } component={ SignUpPage } />
+
+					<AuthenticatedRoute exact path={ '/home' } component={ MainWrapperPage } />
+				</Switch>
+			</Router>
+		</Provider>
+			
 	);
 }
 
