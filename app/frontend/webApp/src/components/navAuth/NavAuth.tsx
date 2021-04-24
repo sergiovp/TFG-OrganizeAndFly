@@ -1,4 +1,4 @@
-import react, {useEffect, useState} from 'react';
+import react from 'react';
 import { Navbar, Nav, Row, Col } from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 import logo from '../../public/images/logo.png';
@@ -8,21 +8,23 @@ import settins from '../../public/images/settins.png';
 import { useHistory } from "react-router-dom";
 import { logOut } from '../../requests/userRequests';
 import './styles.css';
+import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
+import { deleteUserAction } from '../../redux/sessionDucks';
+import { parseEmail } from '../../helpers/helpers';
 
 const COMP_NAME = 'NavAuth';
 
-interface Props {
-    user: any;
-};
-
-
-export default function NavAuth(props: any) {
+export default function NavAuth() {
+    const dispatch = useDispatch();
     let history = useHistory();
-
+    
     async function handleSignOutClick() {
+        dispatch(deleteUserAction());
         logOut();
         history.push('/');
     }
+
+    const email = parseEmail(useSelector((state: RootStateOrAny) => state.session.email));
 
     return (
         <Navbar bg="light" expand="lg" className={`${COMP_NAME}__nav-container`}>
@@ -32,7 +34,7 @@ export default function NavAuth(props: any) {
             <Navbar.Collapse className={`${COMP_NAME}__nav-message`}>
             <ul className="nav nav-tabs">
                 <li className="nav-item">
-                    <p id="{`${COMP_NAME}__nav-welcome`}" className="nav-link active">Welcome <span>props.user</span></p>
+                    <p id="{`${COMP_NAME}__nav-welcome`}" className="nav-link active">Welcome <span>{email}</span></p>
                 </li>
             </ul>
             </Navbar.Collapse>
