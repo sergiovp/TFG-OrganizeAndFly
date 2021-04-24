@@ -9,19 +9,21 @@ import SignUpPage from './pages/signUp/SignUpPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import generateStore from './redux/store';
+import ProfilePage from './pages/profile/Profile';
 
 function App() {
 	const store = generateStore();
 
 	return (
 		<Provider store={store}>
-			<Router >
+			<Router>
 				<Switch>
 					<UnAuthenticatedRoute exact path={ '/' } component={ HomeNotAuthPage } />
 					<UnAuthenticatedRoute exact path={ '/login' } component={ LogInPage } />
 					<UnAuthenticatedRoute exact path={ '/signup' } component={ SignUpPage } />
 
 					<AuthenticatedRoute exact path={ '/home' } component={ MainWrapperPage } />
+					<AuthenticatedRoute exact path={ '/profile' } component={ ProfilePage } />
 				</Switch>
 			</Router>
 		</Provider>
