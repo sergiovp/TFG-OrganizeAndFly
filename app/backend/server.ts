@@ -8,7 +8,7 @@ import { storeKnexSession as store } from './dataBase/instanceDB';
 const app = express();
 
 // Set port
-const PORT: number = 7777;
+const PORT = 7777;
 
 // Express middleware to enable CORS with credentials from our frontend
 app.use(cors({
@@ -29,6 +29,9 @@ app.use(
 		resave: true,
 		saveUninitialized: false,
 		store,
+		cookie: {
+			maxAge: 365 * 24 * 60 * 60 * 1000,
+		}
 	}),
 );
 
