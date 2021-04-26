@@ -13,6 +13,20 @@ declare module 'express-session' {
 }
 
 /************************
+ * Session's routes:
+ ***********************/
+
+router.get('/logout', verifyUser, async function (req: express.Request, res: express.Response) {
+    const response = await sessionController.deleteSession(req.session.id);
+
+    req.session.destroy((err) => {});
+
+    res.cookie('connect.sid', '', {expires: new Date(1), path: '/' });
+
+    res.status(response.status).send(response.msg);
+});
+
+/************************
  * User's routes:
  ***********************/
 
@@ -59,16 +73,6 @@ router.get('/profile/:userID', verifyUserToken, async function (req: express.Req
     const response = await userController.getProfile(userID);
 
     res.status(response.status || status.Success).send(response.msg || response);
-});
-
-router.get('/logout', verifyUser, async function (req: express.Request, res: express.Response) {
-    const response = await sessionController.deleteSession(req.session.id);
-
-    req.session.destroy((err) => {});
-
-    res.cookie('connect.sid', '', {expires: new Date(1), path: '/' });
-
-    res.status(response.status).send(response.msg);
 });
 
 export default router;
