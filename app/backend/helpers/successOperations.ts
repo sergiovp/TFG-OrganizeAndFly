@@ -17,3 +17,12 @@ export function profileUpdated(): object {
         status: status.Success,
     };
 }
+
+export function sessionDeleted() {
+    return {
+        msg: {
+            info: 'Session was deleted successfully from the DB'
+        },
+        status: status.Success,
+    };
+}
