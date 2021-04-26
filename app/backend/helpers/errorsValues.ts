@@ -12,6 +12,7 @@ const enum errorsValues {
     ThereIsNothingToMod = "There is nothing to be modified",
     NotNewPass = "You must entered a new password",
     NoSession = "No established session with the server, please, login",
+    NoSessionDeleted = "The session could't be deleted from de DB",
 };
 
 export default errorsValues;

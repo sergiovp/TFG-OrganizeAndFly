@@ -126,3 +126,12 @@ export function getNoSession() {
         status: status.Unauthorized,
     };
 }
+
+export function getNoSessionDeleted() {
+    return {
+        msg: {
+            error: { NoSessionDeleted: errorsValues.NoSessionDeleted },
+        },
+        status: status.Notfound,
+    };
+}
