@@ -47,7 +47,7 @@ router.post('/login', async function (req: express.Request, res: express.Respons
 
     response.msg ? '' : req.session.userToken = response.token;
 
-    res.status(response.status || status.Success).send(response.msg || response);
+    res.status(response.status || status.Success).send(response.msg || response.token);
 });
 
 router.put('/profile/:userID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
