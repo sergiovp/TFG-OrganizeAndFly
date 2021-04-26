@@ -13,7 +13,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import useStyles from './formStyles';
 import './styles.css';
 import { logIn } from '../../requests/userRequests';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import decodeToken from '../../helpers/decodeToken';
 import { createUserAction } from '../../redux/sessionDucks';
 
 const COMP_NAME = 'SignForms';
@@ -48,7 +49,10 @@ export default function LogIn() {
             return false;
         }
 
-        dispatch(createUserAction(res.data));
+        const userData = decodeToken(res.data);
+
+        dispatch(createUserAction(res.data, userData));
+
         history.push('/home');
     }
 
