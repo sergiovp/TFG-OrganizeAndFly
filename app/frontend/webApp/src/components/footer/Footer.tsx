@@ -1,4 +1,3 @@
-import react from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Col, Row} from 'react-bootstrap';
 import './styles.css';
@@ -18,6 +17,7 @@ export default function Footer() {
                             Organize&amp;Fly is an open source web and mobile app for organising and planning
                             made with love by his author.
                         </p>
+                        <p className={`${COMP_NAME}__thanks-text`}>Special thanks to everyone who has supported me. <a href="/thanks">❤</a></p>
                     </Col>
                     <Col sm="12" md="3">
                     </Col>
@@ -27,6 +27,7 @@ export default function Footer() {
                             <li><Link to="/legaltexts">Terms of Usage</Link></li>
                             <li><Link to="/legaltexts">Privacy Policy</Link></li>
                             <li><Link to="/legaltexts">Cookies Policy</Link></li>
+                            <li>Icons downloaded from <a target="_blank" href="https://www.flaticon.es">flaticon</a></li>
                         </ul>
                     </Col>
                 </Row>
