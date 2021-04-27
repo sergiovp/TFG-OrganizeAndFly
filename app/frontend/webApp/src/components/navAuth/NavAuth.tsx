@@ -1,4 +1,3 @@
-import react from 'react';
 import { Navbar, Nav, Row, Col } from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 import logo from '../../public/images/logo.png';
@@ -13,6 +12,10 @@ import { deleteUserAction } from '../../redux/sessionDucks';
 import { parseEmail } from '../../helpers/helpers';
 
 const COMP_NAME = 'NavAuth';
+
+interface Props {
+    userEmail: string,
+}
 
 export default function NavAuth() {
     const dispatch = useDispatch();
@@ -34,7 +37,7 @@ export default function NavAuth() {
             <Navbar.Collapse className={`${COMP_NAME}__nav-message`}>
             <ul className="nav nav-tabs">
                 <li className="nav-item">
-                    <p id="{`${COMP_NAME}__nav-welcome`}" className="nav-link active">Welcome <span>{email}</span></p>
+                    <p id={`${COMP_NAME}__nav-welcome`} className="nav-link active">Welcome <span>{email}</span></p>
                 </li>
             </ul>
             </Navbar.Collapse>
