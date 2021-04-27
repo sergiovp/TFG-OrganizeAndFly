@@ -1,4 +1,3 @@
-import react from 'react';
 import { Route, RouteProps, Redirect } from 'react-router-dom';
 import { useSelector, RootStateOrAny } from 'react-redux';
 
