@@ -60,3 +60,12 @@
 .Footer__copyright {
     margin-top: 1em;
 }
+
+.Footer__thanks-text {
+  margin-top: 0;
+  color: bisque;
+}
+
+.Footer__info-text {
+  margin-bottom: 0;
+}
