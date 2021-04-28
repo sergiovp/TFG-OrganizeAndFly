@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { generateHeader } from './generalRequests';
+import generateHeader from '../helpers/generateHeader';
 
 const URL = 'http://localhost:7777/';
 
