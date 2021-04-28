@@ -1,4 +1,4 @@
-import react, { useState, SyntheticEvent } from 'react';
+import { useState, SyntheticEvent } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,6 +16,7 @@ import { logIn } from '../../requests/userRequests';
 import { useDispatch } from 'react-redux';
 import decodeToken from '../../helpers/decodeToken';
 import { createUserAction } from '../../redux/sessionDucks';
+import { checkEnteredFieldsLogin } from '../../helpers/helpers';
 
 const COMP_NAME = 'SignForms';
 
@@ -34,30 +35,27 @@ export default function LogIn() {
     async function onSubmit(event: SyntheticEvent) {
         event.preventDefault();
 
-        const res = await logIn(email, pass);
-
-        if (res.error) {
-            switch (Object.keys(res.error)[0]) {
-                case 'WrongData':
-                    setError(res.error.WrongData);
-                break;
-
-                case 'BadArguments':
-                    setError(res.error.BadArguments);
-                break;
+        logIn(email, pass)
+        .then((res) => {
+            if (res.error) {
+                switch (Object.keys(res.error)[0]) {
+                    case 'WrongData':
+                        setError(res.error.WrongData);
+                    break;
+    
+                    case 'BadArguments':
+                        setError(res.error.BadArguments);
+                    break;
+                }
+                return false;
             }
-            return false;
-        }
-
-        const userData = decodeToken(res.data);
-
-        dispatch(createUserAction(res.data, userData));
-
-        history.push('/home');
-    }
-
-    function checkEnteredFields(): boolean {
-        return email.length > 0 && pass.length > 0;
+    
+            const userData = decodeToken(res.data);
+    
+            dispatch(createUserAction(res.data, userData));
+    
+            history.push('/home');
+        });
     }
 
     return (
@@ -105,7 +103,7 @@ export default function LogIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        disabled={!checkEnteredFields()}
+                        disabled={!checkEnteredFieldsLogin(email, pass)}
                     >LogIn
                     </Button>
                     <section className={`${COMP_NAME}__remember-me`}>
