@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@types/node": "^12.20.9",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
@@ -46,6 +47,10 @@
     "@types/react-router-dom": "^5.1.7",
     "bootstrap": "^4.6.0",
     "react-bootstrap": "^1.5.2",
-    "react-social-icons": "^5.1.1"
+    "react-social-icons": "^5.1.1",
+    "redux-devtools": "^3.7.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-localstorage-simple": "^2.4.0",
+    "redux-persist": "^6.0.0"
   }
 }
