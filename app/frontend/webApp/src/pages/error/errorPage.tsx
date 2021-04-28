@@ -16,10 +16,10 @@ export default function ErrorPage() {
             {isLogged ? <NavAuth /> : <NavNotAuth />}
             <Container>
                 <Row className={`${COMP_NAME}__main-container`}>
-                    <Col md="6" className={`${COMP_NAME}__img-container`}>
+                    <Col md="6" sm="12" className={`${COMP_NAME}__img-container`}>
                         <img src={errorImg} alt="error"/>
                     </Col>
-                    <Col md="6" className={`${COMP_NAME}__text-container`}>
+                    <Col md="6" sm="12" className={`${COMP_NAME}__text-container`}>
                         <h1>Page not found.</h1>
                         <h3>This is not the web page you are loking for.</h3>
                         <div className={`${COMP_NAME}__anchor-container`}>
