@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import AuthenticatedRoute from './components/authenticatedRoute';
 import UnAuthenticatedRoute from './components/unAuthenticatedRoute';
@@ -10,6 +9,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import generateStore from './redux/store';
 import ProfilePage from './pages/profile/Profile';
+import LegalTextsPage from './pages/legalTexts/LegalTexts';
+import ErrorPage from './pages/error/errorPage';
+import TestPage from './pages/testPage';
 
 function App() {
 	const store = generateStore();
@@ -24,6 +26,9 @@ function App() {
 
 					<AuthenticatedRoute exact path={ '/home' } component={ MainWrapperPage } />
 					<AuthenticatedRoute exact path={ '/profile' } component={ ProfilePage } />
+
+					<Route exact path={ '/legaltexts' } component={ LegalTextsPage } />
+					<Route path={'*'} component={ ErrorPage } />
 				</Switch>
 			</Router>
 		</Provider>
