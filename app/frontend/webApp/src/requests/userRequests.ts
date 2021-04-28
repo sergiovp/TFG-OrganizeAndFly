@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { generateAuthHeader } from '../helpers/userAuth';
+import { generateHeader } from './generalRequests';
 
 const URL = 'http://localhost:7777/';
-const HEADER = generateAuthHeader();
+
+axios.defaults.withCredentials = true;
 
 export async function signUp(email: string, pass: string, passConfirmation: string) {
     try {
@@ -12,50 +13,63 @@ export async function signUp(email: string, pass: string, passConfirmation: stri
             passConfirmation
         });
     } catch (err) {
-        return err.response.data;
+        return err.response ? err.response.data : err;
     }
 }
 
 export async function logIn(email: string, pass: string) {
     try {
-        return await axios.post(URL + 'login', {
-            email, 
+        return await axios.post(URL + 'login',{
+            email,
             pass
         });
     } catch (err) {
-        return err.response.data;
+        return err.response ? err.response.data : err;
     }
 }
 
-export async function getProfile(userID: string) {
+export async function logOut() {
+    try {
+        localStorage.clear();
+        const res = await axios.get(URL + 'logout');
+        console.log(res);
+        return res;
+    } catch (err) {
+        return err.response ? err.response.data : err;
+    }
+}
+
+export async function getProfile(userID: string, token: string) {
     try {
         return await axios.get(URL + 'profile/' + userID, {
-            headers: HEADER
+            headers: await generateHeader(token),
         });
     } catch (err) {
-        return err.response.data;
+        return err.response ? err.response.data : err;
     }
 }
 
-export async function setProfile(userID: string, email?: string, actualPass?: string, newPass?: string) {
+export async function setProfile(userID: string, token: string, email?: string, actualPass?: string, newPass?: string) {
     try {
         return await axios.put(URL + 'profile/' + userID, {
-            headers: HEADER,
             email,
             actualPass,
-            newPass
+            newPass,
+        },
+        {
+            headers: await generateHeader(token),
         });
     } catch (err) {
-        return err.response.data;
+        return err.response ? err.response.data : err;
     }
 }
 
-export async function deleteProfile(userID: string) {
+export async function deleteProfile(userID: string, token: string) {
     try {
         return await axios.delete(URL + 'profile/' + userID, {
-            headers: HEADER
+            headers: await generateHeader(token),
         });
     } catch (err) {
-        return err.response.data;
+        return err.response ? err.response.data : err;
     }
 }
