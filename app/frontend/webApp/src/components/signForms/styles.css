@@ -52,3 +52,9 @@
     font-family: 'Anton', sans-serif;
     font-size: 0.9em;
 }
+
+.SignForms__info {
+    color: green;
+    text-align: center;
+    margin: 0;
+}
