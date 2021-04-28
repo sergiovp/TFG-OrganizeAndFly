@@ -1,0 +1,23 @@
+.error__main-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+}
+
+.error__img-container > img {
+    width: 30rem;
+    height: 30rem;
+}
+
+.error__text-container {
+    text-align: center;
+}
+
+.error__text-container > h1 {
+    color: red;
+}
+
+.error__anchor-container {
+    font-size: 2rem;
+}
