@@ -58,3 +58,7 @@
     text-align: center;
     margin: 0;
 }
+
+#SignForms__delete-btn {
+    background-color: #e76f51;
+}
