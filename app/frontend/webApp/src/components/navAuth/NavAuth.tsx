@@ -32,7 +32,7 @@ export default function NavAuth() {
     return (
         <Navbar bg="light" expand="lg" className={`${COMP_NAME}__nav-container`}>
             <Navbar.Brand href="/home"><img className={`${COMP_NAME}__nav-logo`} src={logo} alt="Logo"/></Navbar.Brand>
-            <Navbar.Brand className={`${COMP_NAME}__nav-tittle`} href="/home">Organize&amp;Go</Navbar.Brand>
+            <Navbar.Brand className={`${COMP_NAME}__nav-tittle`} href="/home">Organize&amp;Fly</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className={`${COMP_NAME}__nav-message`}>
             <ul className="nav nav-tabs">
