@@ -31,6 +31,7 @@ export default function sessionReducer(state = initialState, action: any) {
         case UPDATE_USER_SESSION:
             return {
                 ...state,
+                token: action.payload.token,
                 email: action.payload.email,
             }
         default:
@@ -52,9 +53,9 @@ export const deleteUserAction = () => async (dispath: any, getState: any) => {
     });
 }
 
-export const setUserDataAction = (email: string) => async (dispath: any, getState: any) => {
+export const setUserDataAction = (token: string, email: string) => async (dispath: any, getState: any) => {
     dispath({
         type: UPDATE_USER_SESSION,
-        payload: { email },
+        payload: { token, email },
     });
 }
