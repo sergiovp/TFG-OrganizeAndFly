@@ -11,9 +11,7 @@ export function userDeleted(): object {
 
 export function profileUpdated(): object {
     return {
-        msg: {
-            info: 'User profile was updated successfully'
-        },
+        info: 'User profile was updated successfully',
         status: status.Success,
     };
 }
