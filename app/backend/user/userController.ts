@@ -18,7 +18,10 @@ async function setEmail(userID: string, email: string): Promise<object> {
         return userData;
     }
 
-    return profileUpdated();
+    const msg = profileUpdated();
+    const token = generations.generateUserToken(userData);
+
+    return { token,  msg }
 }
 
 async function setPass(userID: string, actualPass: string, newPass?: string, email?: string) {
@@ -42,13 +45,16 @@ async function setPass(userID: string, actualPass: string, newPass?: string, ema
 
     const newPassEncrypted = await generations.generateEncryptedPass(newPass);
 
-    await userModel.setProfileDB(userID, undefined, newPassEncrypted);
+    const userData = await userModel.setProfileDB(userID, undefined, newPassEncrypted);
 
     if (email) {
         return setEmail(userID, email);
     }
 
-    return profileUpdated();
+    const msg = profileUpdated();
+    const token = generations.generateUserToken(userData);
+
+    return { token,  msg}
 }
 
 export async function signUp(email: string, pass: string, passConfirmation: string): Promise<any> {
@@ -108,7 +114,13 @@ export async function logIn(email: string, pass: string): Promise<any> {
     return { token: token };
 }
 
-export async function setProfile(userID: string, email?: string, actualPass?: string, newPass?: string): Promise<any> {
+export async function setProfile(userID: string, email?: string, actualPass?: string, newPass?: string, newPassConf?: string): Promise<any> {
+    if (newPass) {
+        if (newPass !== newPassConf) {
+            return errorFunctions.getMatchPasswords();
+        }
+    }
+    
     if (!email && !actualPass) {
         return errorFunctions.getNothingToModify();
     }
