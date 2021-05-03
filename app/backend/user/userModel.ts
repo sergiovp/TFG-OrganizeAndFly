@@ -31,10 +31,14 @@ export async function logInDB(email: string, pass: string): Promise<any> {
 
 export async function setProfileDB(userID: string, email?: string, pass?: string): Promise<any> {
     try {
-        return await dataBase(TABLE_NAME)
+        await dataBase(TABLE_NAME)
             .first()
             .where(ID_DB_NAME, userID)
             .update({ email: email, pass: pass });
+        return await dataBase(TABLE_NAME)
+            .select('user_id', 'email', 'pass')
+            .first()
+            .where(ID_DB_NAME, userID);
     } catch (err) {
         return getBDError(err);
     }
