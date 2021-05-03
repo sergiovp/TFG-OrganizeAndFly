@@ -4,7 +4,6 @@ import { getBDError } from '../helpers/errorsFunctions';
 const TABLE_NAME = 'sessions';
 
 export async function deleteSessionDB(sid: string) {
-    console.log(sid);
     try {
         return await dataBase(TABLE_NAME)
             .where({ sid: sid })
