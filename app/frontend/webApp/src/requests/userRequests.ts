@@ -31,9 +31,7 @@ export async function logIn(email: string, pass: string) {
 export async function logOut() {
     try {
         localStorage.clear();
-        const res = await axios.get(URL + 'logout');
-        console.log(res);
-        return res;
+        return await axios.get(URL + 'logout');
     } catch (err) {
         return err.response ? err.response.data : err;
     }
@@ -42,22 +40,23 @@ export async function logOut() {
 export async function getProfile(userID: string, token: string) {
     try {
         return await axios.get(URL + 'profile/' + userID, {
-            headers: await generateHeader(token),
+            headers: generateHeader(token),
         });
     } catch (err) {
         return err.response ? err.response.data : err;
     }
 }
 
-export async function setProfile(userID: string, token: string, email?: string, actualPass?: string, newPass?: string) {
+export async function setProfile(userID: string, token: string, email?: string, actualPass?: string, newPass?: string, newPassRep?: string) {
     try {
         return await axios.put(URL + 'profile/' + userID, {
             email,
             actualPass,
             newPass,
+            newPassRep,
         },
         {
-            headers: await generateHeader(token),
+            headers: generateHeader(token),
         });
     } catch (err) {
         return err.response ? err.response.data : err;
@@ -67,7 +66,7 @@ export async function setProfile(userID: string, token: string, email?: string, 
 export async function deleteProfile(userID: string, token: string) {
     try {
         return await axios.delete(URL + 'profile/' + userID, {
-            headers: await generateHeader(token),
+            headers: generateHeader(token),
         });
     } catch (err) {
         return err.response ? err.response.data : err;
