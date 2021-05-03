@@ -14,6 +14,7 @@ import './styles.css';
 import useStyles from './formStyles';
 import { setProfile, deleteProfile, logOut } from '../../requests/userRequests';
 import { setUserDataAction, deleteUserAction } from '../../redux/sessionDucks';
+import decodeToken from '../../helpers/decodeToken';
 
 const COMP_NAME = 'SignForms';
 
@@ -26,32 +27,69 @@ export default function Profile() {
     const [email, setEmail] = useState<string>(userInfo.email);
     const [pass, setPass] = useState<string>("");
     const [newPass, setNewPass] = useState<string>("");
+    const [newPassRep, setNewPassRep] = useState<string>("");
     const [info, setInfo] = useState<string>("");
     const [emailError, setEmailError] = useState<string>("");
     const [passError, setPassError] = useState<string>("");
     const [newPassError, setNewPassError] = useState<string>("");
+    const [newPassRepError, setNewPassRepError] = useState<string>("");
     const [deleteError, setDeleteError] = useState<string>("");
     const classes = useStyles();
 
     async function onSubmit(event: SyntheticEvent) {
         event.preventDefault();
 
-        setProfile(userInfo.id, userInfo.token, email, pass, newPass)
+        clearInfo();
+
+        setProfile(userInfo.id, userInfo.token, email, pass, newPass, newPassRep)
         .then((res) => {
-            console.log(res);
-            if (res.error) {
 
+            if (res.msg?.error) {
+
+                switch (Object.keys(res.msg.error)[0]) {
+                    case 'DuplicatedEmail':
+                        setEmailError(res.msg.error.DuplicatedEmail);
+                    break;
+    
+                    case 'EmailBadSyntax':
+                        setEmailError(res.msg.error.EmailBadSyntax);
+                    break;
+
+                    case 'WrongData':
+                        setPassError("Incorrect password");
+                    break;
+
+                    case 'UnsafePass':
+                        setNewPassError(res.msg.error.UnsafePass);
+                    break;
+
+                    case 'NotNewPass':
+                        setNewPassError(res.msg.error.NotNewPass);
+                    break;
+
+                    case 'PasswordsDontMatch':
+                        setNewPassRepError(res.msg.error.PasswordsDontMatch);
+                    break;
+
+                    case 'ThereIsNothingToMod':
+                        setNewPassRepError(res.msg.error.ThereIsNothingToMod);
+                    break;
+                } 
+                return false;
             }
-
-            if (res.data.info) {
-                setInfo(res.data.info);
-                //setUserDataAction(re)
+            
+            if (res.data.msg.info && res.data.token) {
+                setInfo(res.data.msg.info);
+                const userData = decodeToken(res.data.token);
+                dispatch(setUserDataAction(res.data.token, userData.email));
             }
         });
     }
 
     function checkEnteredFields() {
-        return true;
+        return email === userInfo.email || !pass 
+        ?  false
+        : true;
     }
 
     function handleDelete() {
@@ -72,6 +110,11 @@ export default function Profile() {
         setEmailError("");
         setPassError("");
         setNewPassError("");
+        setNewPassRepError("");
+    }
+
+    function clearInfo() {
+        setInfo("");
     }
 
     return (
@@ -91,11 +134,12 @@ export default function Profile() {
                             <TextField
                                 variant="outlined"
                                 fullWidth
+                                label="email"
                                 id="email"
                                 value={email}
                                 name="email"
                                 autoComplete="email"
-                                onChange={(ev) => {setEmail(ev.target.value); clearErrors();}}
+                                onChange={(ev) => {setEmail(ev.target.value); clearErrors(); clearInfo();}}
                             />
                         <p className={`${COMP_NAME}__error`}>{emailError}</p>
                         </Grid>
@@ -108,7 +152,7 @@ export default function Profile() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                                onChange={(ev) => {setPass(ev.target.value); clearErrors()}}
+                                onChange={(ev) => {setPass(ev.target.value); clearErrors(); clearInfo();}}
                             />
                             <p className={`${COMP_NAME}__error`}>{passError}</p>
                         </Grid>
@@ -121,9 +165,22 @@ export default function Profile() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                                onChange={(ev) => {setNewPass(ev.target.value); clearErrors()}}
+                                onChange={(ev) => {setNewPass(ev.target.value); clearErrors(); clearInfo()}}
                             />
                             <p className={`${COMP_NAME}__error`}>{newPassError}</p>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                fullWidth
+                                name="newPass"
+                                label="Repeat new password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                onChange={(ev) => {setNewPassRep(ev.target.value); clearErrors(); clearInfo();}}
+                            />
+                            <p className={`${COMP_NAME}__error`}>{newPassRepError}</p>
                         </Grid>
                     </Grid>
                     <p className={`${COMP_NAME}__info`}>{info}</p>
