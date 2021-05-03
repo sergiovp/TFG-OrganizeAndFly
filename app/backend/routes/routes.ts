@@ -52,11 +52,13 @@ router.post('/login', async function (req: express.Request, res: express.Respons
 
 router.put('/profile/:userID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
     const userID = req.params.userID;
-    const { email, actualPass, newPass } = req.body;
+    const { email, actualPass, newPass, newPassRep } = req.body;
 
-    const response = await userController.setProfile(userID, email, actualPass, newPass);
+    const response = await userController.setProfile(userID, email, actualPass, newPass, newPassRep);
 
-    res.status(response.status || status.Success).send(response.msg);
+    response.msg.error ? '' : req.session.userToken = response.token;
+
+    res.status(response.status || status.Success).send(response);
 });
 
 router.delete('/profile/:userID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
