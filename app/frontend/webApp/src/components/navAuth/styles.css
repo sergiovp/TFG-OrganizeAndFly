@@ -18,13 +18,13 @@
     margin-left: 15em;
 }
 
-#\{\`\$\{COMP_NAME\}__nav-welcome\`\} {
+#NavAuth__nav-welcome {
     color: black;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
 }
 
-#\{\`\$\{COMP_NAME\}__nav-welcome\`\} > span {
-    color: blueviolet;
+#NavAuth__nav-welcome > span {
+    color: #302c9b;
     text-decoration: underline;
 }
