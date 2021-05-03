@@ -29,7 +29,6 @@ export default function sessionReducer(state = initialState, action: any) {
                 isLogged: false,
             }
         case UPDATE_USER_SESSION:
-            console.log(action.payload);
             return {
                 ...state,
                 email: action.payload.email,
