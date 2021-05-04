@@ -1,4 +1,3 @@
-import react from 'react';
 
 export default function HomeAuthPage() {
     return (
