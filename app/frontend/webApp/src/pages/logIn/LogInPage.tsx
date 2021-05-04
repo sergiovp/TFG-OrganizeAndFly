@@ -1,4 +1,3 @@
-import react from 'react';
 import LogIn from '../../components/signForms/LogIn';
 import Footer from '../../components/footer/Footer';
 

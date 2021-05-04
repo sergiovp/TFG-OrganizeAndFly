@@ -1,4 +1,3 @@
-import react from 'react';
 import SignUp from '../../components/signForms/SignUp';
 import Footer from '../../components/footer/Footer';
 
