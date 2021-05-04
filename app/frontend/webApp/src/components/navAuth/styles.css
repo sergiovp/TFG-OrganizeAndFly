@@ -26,9 +26,29 @@
     color: black;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-125%, -50%);
+    margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 995px) {
+    #NavAuth__nav-welcome {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
 }
 
 #NavAuth__nav-welcome > span {
     color: #302c9b;
     text-decoration: underline;
+}
+
+#NavAuth__u-list {
+    border-bottom: 0;
 }
