@@ -1,4 +1,3 @@
-import react from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import space from '../../public/images/space.png';
 import './styles.css';
