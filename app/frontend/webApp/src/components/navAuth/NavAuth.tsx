@@ -36,7 +36,7 @@ export default function NavAuth() {
                 <Navbar.Brand className={`${COMP_NAME}__nav-tittle`} href="/home">Organize&amp;Fly</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className={`${COMP_NAME}__nav-message`}>
-                <ul className="nav nav-tabs">
+                <ul className="nav nav-tabs" id={`${COMP_NAME}__u-list`}>
                     <li className="nav-item">
                         <p id={`${COMP_NAME}__nav-welcome`} className="nav-link active">Welcome <span>{email}</span></p>
                     </li>
