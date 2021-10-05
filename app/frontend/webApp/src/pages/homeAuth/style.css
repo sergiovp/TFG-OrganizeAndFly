@@ -2,6 +2,10 @@
     font-family: 'Rubik', sans-serif;
 }
 
+.HomeAuth__main-container.container > div {
+    padding-bottom: 3em;
+}
+
 .HomeAuth__row-container {
     display: flex;
     align-items: center;
@@ -15,7 +19,11 @@
     margin-top: 3em;
 }
 
-.HomeAuth__row-container > p > img{
+.HomeAuth__row-dynamic > button {
+    background-color: darkblue;
+}
+
+.HomeAuth__row-container > p > img {
     margin-right: 1.2em;
     padding-bottom: 2px;
     margin-left: 1.1em;
