@@ -1,5 +1,6 @@
-import React, { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { addBoard } from '../../requests/boardRequests';
 
 import './styles.css';
 
@@ -12,14 +13,16 @@ interface Props {
     namePlaceholder: string;
     descriptionPlaceholder: string;
     component: any
+    setShow: any
 }
 
 // Form component that includes name and description inputs.
 export default function NameDescriptionForm(props: Props) {
     const [name, setName] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
     const [errMsg, setErrMsg] = useState<boolean>(false);
 
-    const onSubmit = (event: SyntheticEvent) => {
+    const onSubmit = async (event: SyntheticEvent) => {
         event.preventDefault();
         if (!correctInput(name)) {
             setErrMsg(true);
@@ -27,10 +30,12 @@ export default function NameDescriptionForm(props: Props) {
             return false;
         }
         if (props.component === 'board') {
-            console.log('BOARD');
+            props.setShow(false);
+
+            const response = await addBoard(name, description);
         }
         else if (props.component === 'team') {
-            console.log('TEAM');
+            props.setShow(false);
         }
     }
 
@@ -54,7 +59,11 @@ export default function NameDescriptionForm(props: Props) {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Description</Form.Label>
-            <Form.Control type="text" placeholder={props.descriptionPlaceholder} />
+            <Form.Control
+                type="text"
+                placeholder={props.descriptionPlaceholder} 
+                onChange={ev => setDescription(ev.target.value)}
+            />
         </Form.Group>
         <Button variant="primary" type="submit">
             Submit
