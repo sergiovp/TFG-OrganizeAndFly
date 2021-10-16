@@ -8,6 +8,7 @@ interface Props {
     descriptionPlayholder: string;
     namePlaceholder: string;
     component: any
+    setShow: any
 }
 
 export default function DefaultModal(props: Props ) {
@@ -23,6 +24,7 @@ export default function DefaultModal(props: Props ) {
             </Modal.Header>
             <Modal.Body>
                 <NameDescriptionForm
+                    setShow={props.setShow}
                     descriptionPlaceholder={props.descriptionPlayholder} 
                     namePlaceholder={props.namePlaceholder}
                     component={props.component}
