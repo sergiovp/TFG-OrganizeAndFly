@@ -1,6 +1,8 @@
 import express from 'express';
 import * as userController from '../user/userController';
 import * as sessionController from '../session/sessionController';
+import * as teamController from '../team/teamController';
+import * as boardController from '../board/boardController';
 import status from '../helpers/statusCodes';
 import { verifyUserToken, verifyUser } from '../middlewares/verifyAuth';
 
@@ -75,6 +77,37 @@ router.get('/profile/:userID', verifyUserToken, async function (req: express.Req
     const response = await userController.getProfile(userID);
 
     res.status(response.status || status.Success).send(response.msg || response);
+});
+
+/************************
+ * Team's routes:
+ ***********************/
+
+ router.post('/team', async function (req: express.Request, res: express.Response): Promise<any> {
+    const { name, description } = req.body;
+
+    const response = await teamController.addTeam(name, description);
+
+    // response.msg ? '' : req.session.userToken = response.token;
+
+    // res.status(response.status || status.Success).send(response.msg || response.token);
+});
+
+/************************
+ * Board's routes:
+ ***********************/
+
+ router.post('/board',
+    // verifyUser,
+    // verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const { boardName, boardDescription } = req.body;
+        console.log(boardName, boardDescription);
+        const response = await boardController.addBoard(boardName, boardDescription);
+
+        // response.msg ? '' : req.session.userToken = response.token;
+
+        // res.status(response.status || status.Success).send(response.msg || response.token);
 });
 
 export default router;
