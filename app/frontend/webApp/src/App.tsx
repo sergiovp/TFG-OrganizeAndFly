@@ -11,7 +11,6 @@ import generateStore from './redux/store';
 import ProfilePage from './pages/profile/Profile';
 import LegalTextsPage from './pages/legalTexts/LegalTexts';
 import ErrorPage from './pages/error/errorPage';
-import TestPage from './pages/testPage';
 
 function App() {
 	const store = generateStore();
