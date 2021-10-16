@@ -51,6 +51,7 @@ export default function HomeAuthPage() {
                     </Button>
                     <DefaultModal 
                         show={showBoardModal}
+                        setShow={setShowBoardModal}
                         handleClose={handleCloseBoardModal}
                         modalTitle={'Add new board'}
                         namePlaceholder={'Enter board name'}
@@ -73,6 +74,7 @@ export default function HomeAuthPage() {
                     </Button>
                     <DefaultModal 
                         show={showTeamModal}
+                        setShow={setShowTeamModal}
                         handleClose={handleCloseTeamModal}
                         modalTitle={'Add new team'}
                         namePlaceholder={'Enter team name'}
