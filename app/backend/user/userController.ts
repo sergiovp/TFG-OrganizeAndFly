@@ -54,7 +54,7 @@ async function setPass(userID: string, actualPass: string, newPass?: string, ema
     const msg = profileUpdated();
     const token = generations.generateUserToken(userData);
 
-    return { token,  msg}
+    return { token,  msg }
 }
 
 export async function signUp(email: string, pass: string, passConfirmation: string): Promise<any> {
