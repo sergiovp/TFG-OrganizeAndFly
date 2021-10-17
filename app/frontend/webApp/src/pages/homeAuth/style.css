@@ -21,6 +21,8 @@
 
 .HomeAuth__row-dynamic > button {
     background-color: darkblue;
+    margin-left: 1.2em;
+    height: 2.2em;
 }
 
 .HomeAuth__row-container > p > img {
@@ -28,4 +30,10 @@
     padding-bottom: 2px;
     margin-left: 1.1em;
     margin: 0;
+}
+
+.full-card {
+    display: inline-block;
+    margin-left: 1.2em;
+    margin-bottom: 1.2em;
 }
