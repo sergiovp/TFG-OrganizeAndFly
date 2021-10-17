@@ -1,19 +1,10 @@
 import * as boardModel from './boardModel';
-import * as errorFunctions from '../helpers/errorsFunctions';
-import * as generations from '../helpers/generations';
+import { generateID } from '../helpers/generations';
 
-export async function addBoard(boardName: string, boardDescription: string) {
-    console.log("Controller", boardName)
-    if (!boardName) {
-        return errorFunctions.getBadArguments();
-    }
+export async function addBoard(boardName: string, boardDescription: string, userID: string) {
+    const boardID = generateID();
 
-    const boardID = generations.generateID();
-
-    console.log(boardID)
-
-    const response = await boardModel.addBoardDB(boardID, boardName, boardDescription);
-    console.log(response);
+    return await boardModel.addBoardDB(boardID, boardName, boardDescription, userID);
 }
 
 export async function setBoard(boardID: string, boardName?: string, boardDescription?: string) {
@@ -26,4 +17,15 @@ export async function deleteBoard(boardID: string) {
 
 export async function shareBoard(boardID: string, userEmail: string) {
 
+}
+
+export async function getUserBoards(userID: string) {
+    const boardsIDs = await boardModel.getUserBoardsDB(userID);
+    let boardInfo = [];
+
+    for (let board of boardsIDs) {
+        boardInfo.push(await boardModel.getBoardDB(board.board_id));
+    }
+
+    return boardInfo;
 }
