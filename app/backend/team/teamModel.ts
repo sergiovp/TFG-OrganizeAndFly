@@ -23,7 +23,7 @@ export async function addTeamDB(teamID: string, teamName: string, teamDescriptio
             .select('team_id', 'team_name')
             .first()
             .where(ID_DB_NAME, teamID);
-    } catch(err) {
+    } catch (err) {
         return getBDError(err);
     }
 }
@@ -32,19 +32,19 @@ export async function getUserTeamsDB(userID: string) {
     try {
         return await dataBase('user_team')
             .select('team_id')
-            .where('user_id', userID)
-    } catch(err) {
+            .where('user_id', userID);
+    } catch (err) {
         return getBDError(err);
     }
 }
 
-export async function getTeam(teamID: string) {
+export async function getTeamDB(teamID: string) {
     try {
         return await dataBase('teams')
             .select('team_name', 'team_description')
             .where('team_id', teamID)
             .first()
-    } catch(err) {
+    } catch (err) {
         return getBDError(err);
     }
 }

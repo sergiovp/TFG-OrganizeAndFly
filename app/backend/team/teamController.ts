@@ -25,7 +25,7 @@ export async function getUserTeams(userID: string) {
     let teamInfo = [];
     
     for (let team of teamsIDs) {
-        teamInfo.push(await teamModel.getTeam(team.team_id));
+        teamInfo.push(await teamModel.getTeamDB(team.team_id));
     }
 
     return teamInfo;
