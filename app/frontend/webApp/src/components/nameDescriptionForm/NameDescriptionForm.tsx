@@ -1,6 +1,8 @@
 import { SyntheticEvent, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useSelector, RootStateOrAny } from 'react-redux';
 import { addBoard } from '../../requests/boardRequests';
+import { addTeam } from '../../requests/teamRequests';
 
 import './styles.css';
 
@@ -18,6 +20,9 @@ interface Props {
 
 // Form component that includes name and description inputs.
 export default function NameDescriptionForm(props: Props) {
+    // Retrieve the user session information.
+    const userInfo = useSelector((state: RootStateOrAny) => state.session);
+
     const [name, setName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [errMsg, setErrMsg] = useState<boolean>(false);
@@ -32,10 +37,12 @@ export default function NameDescriptionForm(props: Props) {
         if (props.component === 'board') {
             props.setShow(false);
 
-            const response = await addBoard(name, description);
+            await addBoard(name, description, userInfo.token);
         }
         else if (props.component === 'team') {
             props.setShow(false);
+
+            await addTeam(name, description, userInfo.token, userInfo.id);
         }
     }
 
