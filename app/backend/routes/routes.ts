@@ -83,31 +83,41 @@ router.get('/profile/:userID', verifyUserToken, async function (req: express.Req
  * Team's routes:
  ***********************/
 
- router.post('/team', async function (req: express.Request, res: express.Response): Promise<any> {
-    const { name, description } = req.body;
+router.post('/team',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const { teamName, teamDescription, userID } = req.body;
 
-    const response = await teamController.addTeam(name, description);
+        const response = await teamController.addTeam(teamName, teamDescription, userID);
 
-    // response.msg ? '' : req.session.userToken = response.token;
+        res.status(status.Success).send(response);
+});
 
-    // res.status(response.status || status.Success).send(response.msg || response.token);
+router.get('/team/:userID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const userID = req.params.userID;
+
+        const response = await teamController.getUserTeams(userID);
+
+        res.status(status.Success).send(response);
 });
 
 /************************
  * Board's routes:
  ***********************/
 
- router.post('/board',
-    // verifyUser,
-    // verifyUserToken,
+router.post('/board',
+    verifyUser,
+    verifyUserToken,
     async function (req: express.Request, res: express.Response): Promise<any> {
         const { boardName, boardDescription } = req.body;
-        console.log(boardName, boardDescription);
+
         const response = await boardController.addBoard(boardName, boardDescription);
 
-        // response.msg ? '' : req.session.userToken = response.token;
-
-        // res.status(response.status || status.Success).send(response.msg || response.token);
+        res.status(status.Success).send(response);
 });
 
 export default router;
