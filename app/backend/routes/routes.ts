@@ -113,9 +113,20 @@ router.post('/board',
     verifyUser,
     verifyUserToken,
     async function (req: express.Request, res: express.Response): Promise<any> {
-        const { boardName, boardDescription } = req.body;
+        const { boardName, boardDescription, userID } = req.body;
 
-        const response = await boardController.addBoard(boardName, boardDescription);
+        const response = await boardController.addBoard(boardName, boardDescription, userID);
+
+        res.status(status.Success).send(response);
+});
+
+router.get('/board/:userID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const userID = req.params.userID;
+
+        const response = await boardController.getUserBoards(userID);
 
         res.status(status.Success).send(response);
 });
