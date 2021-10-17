@@ -16,6 +16,7 @@ interface Props {
     descriptionPlaceholder: string;
     component: any
     setShow: any
+    setReload: any
 }
 
 // Form component that includes name and description inputs.
@@ -29,21 +30,27 @@ export default function NameDescriptionForm(props: Props) {
 
     const onSubmit = async (event: SyntheticEvent) => {
         event.preventDefault();
+
         if (!correctInput(name)) {
             setErrMsg(true);
             
             return false;
         }
+
+        props.setReload(true);
+
         if (props.component === 'board') {
             props.setShow(false);
 
-            await addBoard(name, description, userInfo.token);
+            await addBoard(name, description, userInfo.token, userInfo.id);
         }
         else if (props.component === 'team') {
             props.setShow(false);
 
             await addTeam(name, description, userInfo.token, userInfo.id);
         }
+
+        props.setReload(false);
     }
 
     const clearError = () => {

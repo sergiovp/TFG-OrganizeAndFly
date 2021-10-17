@@ -9,6 +9,7 @@ interface Props {
     namePlaceholder: string;
     component: any
     setShow: any
+    setReload: any
 }
 
 export default function DefaultModal(props: Props ) {
@@ -28,6 +29,7 @@ export default function DefaultModal(props: Props ) {
                     descriptionPlaceholder={props.descriptionPlayholder} 
                     namePlaceholder={props.namePlaceholder}
                     component={props.component}
+                    setReload={props.setReload}
                 />
             </Modal.Body>
         </Modal>
