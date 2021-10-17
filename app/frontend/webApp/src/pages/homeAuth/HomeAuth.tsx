@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState , useReducer, useCallback } from 'react';
 import { Row, Container, Col, Button, Card } from 'react-bootstrap';
 import { useSelector, RootStateOrAny } from 'react-redux';
 
@@ -10,6 +10,7 @@ import personal from '../../public/images/personal.png'
 
 import './style.css';
 import { getUserTeams } from '../../requests/teamRequests';
+import { getUserBoards } from '../../requests/boardRequests';
 
 const COMP_NAME = 'HomeAuth';
 
@@ -25,13 +26,23 @@ export default function HomeAuthPage() {
     const [showBoardModal, setShowBoardModal] = useState<boolean>(false);
     const [showTeamModal, setShowTeamModal] = useState<boolean>(false);
     const [teams, setTeams] = useState<Array<any>>([]);
+    const [boards, setBoards] = useState<Array<any>>([]);
+    const [reload, setReload] = useState<boolean>(false);
 
     useEffect(() => {
-        getUserTeams(userInfo.token, userInfo.id)
-            .then(res => {
-                setTeams(res.data);
-            })
-    }, [userInfo.id, userInfo.token, teams]);
+        async function getTeams() {
+            const response = await getUserTeams(userInfo.token, userInfo.id);
+            setTeams(response.data);
+        }
+
+        async function getBoards() {
+            const response = await getUserBoards(userInfo.token, userInfo.id);
+            setBoards(response.data);
+        }
+
+        getTeams();
+        getBoards();
+    }, [reload]);
 
     const handleOnClickBoard = () => {
         setShowBoardModal(true);
@@ -55,6 +66,7 @@ export default function HomeAuthPage() {
                 className="full-card text-center"
                 style={{ width: '18rem' }}
                 border="secondary"
+                key={name}
             >
                 <Card.Header as="h5">{name}</Card.Header>
                 <Card.Body>
@@ -74,6 +86,14 @@ export default function HomeAuthPage() {
                     <p><img src={personal} alt="icon"/>Personal Boards</p>
                 </Row>
                 <Row className={`${COMP_NAME}__row-dynamic`}>
+                { boards && boards.map(({ board_name, board_description }) => {
+                    return (
+                        <GetCard
+                            name={board_name}
+                            description={board_description}  
+                        />
+                    )
+                })}
                     <Button
                         variant="primary" 
                         onClick={handleOnClickBoard}
@@ -88,6 +108,7 @@ export default function HomeAuthPage() {
                         namePlaceholder={'Enter board name'}
                         descriptionPlayholder={'Enter board description'}
                         component={Component.BOARD}
+                        setReload={setReload}
                     />
                 </Row>
                 <Row className={`${COMP_NAME}__row-container`}>
@@ -119,6 +140,7 @@ export default function HomeAuthPage() {
                         namePlaceholder={'Enter team name'}
                         descriptionPlayholder={'Enter team description'}
                         component={Component.TEAM}
+                        setReload={setReload}
                     />
                 </Row>
             </Col>
