@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Footer from '../../components/footer/Footer';
 import errorImg from '../../public/images/404_1.jpg';
 import { useSelector, RootStateOrAny } from 'react-redux';

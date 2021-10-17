@@ -78,7 +78,7 @@ export default function Profile() {
                 return false;
             }
             
-            if (res.data.msg.info && res.data.token) {
+            if (res?.data?.msg?.info && res.data.token) {
                 setInfo(res.data.msg.info);
                 const userData = decodeToken(res.data.token);
                 dispatch(setUserDataAction(res.data.token, userData.email));

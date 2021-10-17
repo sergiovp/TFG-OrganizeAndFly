@@ -13,10 +13,6 @@ import { parseEmail } from '../../helpers/helpers';
 
 const COMP_NAME = 'NavAuth';
 
-interface Props {
-    userEmail: string,
-}
-
 export default function NavAuth() {
     const dispatch = useDispatch();
     let history = useHistory();

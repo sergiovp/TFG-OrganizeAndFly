@@ -27,7 +27,7 @@ export default function Footer() {
                             <li><Link to="/legaltexts">Terms of Usage</Link></li>
                             <li><Link to="/legaltexts">Privacy Policy</Link></li>
                             <li><Link to="/legaltexts">Cookies Policy</Link></li>
-                            <li>Icons downloaded from <a target="_blank" href="https://www.flaticon.es">flaticon</a></li>
+                            <li>Icons downloaded from <a rel="noreferrer" target="_blank" href="https://www.flaticon.es">flaticon</a></li>
                         </ul>
                     </Col>
                 </Row>
