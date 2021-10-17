@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { Row, Container, Col, Button } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Row, Container, Col, Button, Card } from 'react-bootstrap';
+import { useSelector, RootStateOrAny } from 'react-redux';
 
 import DefaultModal from '../../components/defaultModal/DefaultModal';
 
@@ -8,6 +9,7 @@ import shared from '../../public/images/shared.png'
 import personal from '../../public/images/personal.png'
 
 import './style.css';
+import { getUserTeams } from '../../requests/teamRequests';
 
 const COMP_NAME = 'HomeAuth';
 
@@ -17,8 +19,19 @@ enum Component {
 };
 
 export default function HomeAuthPage() {
+    // Retrieve the user session information.
+    const userInfo = useSelector((state: RootStateOrAny) => state.session);
+
     const [showBoardModal, setShowBoardModal] = useState<boolean>(false);
     const [showTeamModal, setShowTeamModal] = useState<boolean>(false);
+    const [teams, setTeams] = useState<Array<any>>([]);
+
+    useEffect(() => {
+        getUserTeams(userInfo.token, userInfo.id)
+            .then(res => {
+                setTeams(res.data);
+            })
+    }, [userInfo.id, userInfo.token, teams]);
 
     const handleOnClickBoard = () => {
         setShowBoardModal(true);
@@ -34,6 +47,24 @@ export default function HomeAuthPage() {
 
     const handleCloseTeamModal = () => {
         setShowTeamModal(false);
+    }
+
+    function GetCard({name, description}: any) {
+        return (
+            <Card
+                className="full-card text-center"
+                style={{ width: '18rem' }}
+                border="secondary"
+            >
+                <Card.Header as="h5">{name}</Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                        {description}
+                    </Card.Text>
+                    <Card.Link href="#">Go to "{name}"</Card.Link>
+                </Card.Body>
+            </Card>
+        )
     }
 
     return (
@@ -66,6 +97,14 @@ export default function HomeAuthPage() {
                     <p><img src={group} alt="icon"/>Teams</p>
                 </Row>
                 <Row className={`${COMP_NAME}__row-dynamic`}>
+                    { teams && teams.map(({ team_name, team_description }) => {
+                        return (
+                            <GetCard
+                                name={team_name}
+                                description={team_description}  
+                            />
+                        )
+                    })}
                     <Button
                         variant="primary"
                         onClick={handleOnclickTeam}
