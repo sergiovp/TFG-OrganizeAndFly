@@ -27,7 +27,17 @@ export async function addBoard(
 
 export async function getUserBoards(token: string, userID: string) {
     try {
-        return await axios.get(URL + 'board/' + userID, {
+        return await axios.get(URL + 'boards/' + userID, {
+            headers: generateHeader(token),
+        });
+    } catch(err) {
+        return err.response ? err.response.data : err;
+    }
+}
+
+export async function getBoard(token: string, boardID: string) {
+    try {
+        return await axios.get(URL + 'board/' + boardID, {
             headers: generateHeader(token),
         });
     } catch(err) {
