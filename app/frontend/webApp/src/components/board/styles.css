@@ -1,0 +1,20 @@
+.board-container {
+
+}
+
+.name-row > h1 {
+    font-weight: bold;
+    font-size: 2em;
+    text-decoration: underline;
+    color: darkblue;
+}
+
+.description-row > h5 {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.list-btn {
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
