@@ -30,3 +30,9 @@ export async function getUserTeams(userID: string) {
 
     return teamInfo;
 }
+
+export async function getTeam(teamID: string) {
+    const teamInfo = await teamModel.getTeamDB(teamID);
+
+    return teamInfo;
+}
