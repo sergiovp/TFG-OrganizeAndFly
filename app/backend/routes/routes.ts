@@ -94,13 +94,24 @@ router.post('/team',
         res.status(status.Success).send(response);
 });
 
-router.get('/team/:userID',
+router.get('/teams/:userID',
     verifyUser,
     verifyUserToken,
     async function (req: express.Request, res: express.Response): Promise<any> {
         const userID = req.params.userID;
 
         const response = await teamController.getUserTeams(userID);
+
+        res.status(status.Success).send(response);
+});
+
+router.get('/team/:teamID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const teamID = req.params.teamID;
+
+        const response = await teamController.getTeam(teamID);
 
         res.status(status.Success).send(response);
 });
@@ -120,13 +131,24 @@ router.post('/board',
         res.status(status.Success).send(response);
 });
 
-router.get('/board/:userID',
+router.get('/boards/:userID',
     verifyUser,
     verifyUserToken,
     async function (req: express.Request, res: express.Response): Promise<any> {
         const userID = req.params.userID;
 
         const response = await boardController.getUserBoards(userID);
+
+        res.status(status.Success).send(response);
+});
+
+router.get('/board/:boardID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const boardID = req.params.boardID;
+
+        const response = await boardController.getBoard(boardID);
 
         res.status(status.Success).send(response);
 });
