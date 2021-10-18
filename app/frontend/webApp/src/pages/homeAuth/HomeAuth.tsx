@@ -114,9 +114,6 @@ export default function HomeAuthPage() {
                     />
                 </Row>
                 <Row className={`${COMP_NAME}__row-container`}>
-                    <p><img src={shared} alt="icon"/>Shared Boards</p>
-                </Row>
-                <Row className={`${COMP_NAME}__row-container`}>
                     <p><img src={group} alt="icon"/>Teams</p>
                 </Row>
                 <Row className={`${COMP_NAME}__row-dynamic`}>
