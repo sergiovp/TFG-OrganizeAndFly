@@ -29,3 +29,9 @@ export async function getUserBoards(userID: string) {
 
     return boardInfo;
 }
+
+export async function getBoard(boardID: string) {
+    const boardInfo = await boardModel.getBoardDB(boardID);
+
+    return boardInfo;
+}

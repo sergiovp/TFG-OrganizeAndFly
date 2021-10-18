@@ -25,7 +25,7 @@ export async function addBoardDB(
                     board_id: boardID
                 })
             return await dataBase(TABLE_NAME)
-                .select('board_id', 'board_name')
+                .select('board_id', 'board_name', 'board_id')
                 .first()
                 .where(ID_DB_NAME, boardID);
         } catch (err) {
@@ -58,7 +58,7 @@ export async function getUserBoardsDB(userID: string) {
 export async function getBoardDB(boardID: string) {
     try {
         return await dataBase('boards')
-            .select('board_name', 'board_description')
+            .select('board_name', 'board_description', 'board_id')
             .where('board_id', boardID)
             .first();
     } catch (err) {
