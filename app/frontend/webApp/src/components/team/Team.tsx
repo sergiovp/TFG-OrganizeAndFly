@@ -1,39 +1,39 @@
 import { useEffect, useState } from 'react';
-import { getBoard } from '../../requests/boardRequests';
+import { getTeam } from '../../requests/teamRequests';
 import { useSelector, RootStateOrAny } from 'react-redux';
-import { Row, Container, Col, Button } from 'react-bootstrap';
+import { Row, Container, Col, Button, Card } from 'react-bootstrap';
 import './styles.css';
 
 interface Props {
     id: string;
 }
 
-export default function Board(props: Props) {
+export default function Team(props: Props) {
     // Retrieve the user session information.
     const userInfo = useSelector((state: RootStateOrAny) => state.session);
 
-    const [boardInfo, setBoardInfo] = useState<any>('');
+    const [teamInfo, setTeamInfo] = useState<any>('');
 
     const handleOnClick = () => {
         console.log("Hola");
     }
 
     useEffect(() => {
-        async function getBoardInfo(boardID: string) {
-            const response = await getBoard(userInfo.token, boardID);
-            setBoardInfo(response.data);
+        async function getTeamInfo(teamID: string) {
+            const response = await getTeam(userInfo.token, teamID);
+            setTeamInfo(response.data);
         }
 
-        getBoardInfo(props.id);
+        getTeamInfo(props.id);
     }, [])
     
     return (
         <Container className='board-container'>
             <Row className='name-row'>
-                <h1>{boardInfo.board_name}</h1>
+                <h1>{teamInfo.team_name}</h1>
             </Row>
             <Row className='description-row'>
-                <h5>{boardInfo.board_description}</h5>
+                <h5>{teamInfo.team_description}</h5>
             </Row>
             <Row>
                 <Col>
@@ -42,7 +42,7 @@ export default function Board(props: Props) {
                         variant="primary" 
                         onClick={handleOnClick}
                     >
-                        Add new list
+                        Add new board
                     </Button>
                 </Col>
             </Row>
