@@ -1,4 +1,4 @@
-import { useEffect, useState , useReducer, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { Row, Container, Col, Button, Card } from 'react-bootstrap';
 import { useSelector, RootStateOrAny } from 'react-redux';
 
@@ -60,7 +60,7 @@ export default function HomeAuthPage() {
         setShowTeamModal(false);
     }
 
-    function GetCard({name, description}: any) {
+    function GetCard({name, description, id, isBoard}: any) {
         return (
             <Card
                 className="full-card text-center"
@@ -73,7 +73,7 @@ export default function HomeAuthPage() {
                     <Card.Text>
                         {description}
                     </Card.Text>
-                    <Card.Link href="#">Go to "{name}"</Card.Link>
+                    <Card.Link href={isBoard ? '/board/' + id : '/team/' + id}>Go to "{name}"</Card.Link>
                 </Card.Body>
             </Card>
         )
@@ -86,11 +86,13 @@ export default function HomeAuthPage() {
                     <p><img src={personal} alt="icon"/>Personal Boards</p>
                 </Row>
                 <Row className={`${COMP_NAME}__row-dynamic`}>
-                { boards && boards.map(({ board_name, board_description }) => {
+                { boards && boards.map(({ board_name, board_description, board_id }) => {
                     return (
                         <GetCard
                             name={board_name}
-                            description={board_description}  
+                            description={board_description}
+                            id={board_id}
+                            isBoard={true}
                         />
                     )
                 })}
@@ -118,11 +120,13 @@ export default function HomeAuthPage() {
                     <p><img src={group} alt="icon"/>Teams</p>
                 </Row>
                 <Row className={`${COMP_NAME}__row-dynamic`}>
-                    { teams && teams.map(({ team_name, team_description }) => {
+                    { teams && teams.map(({ team_name, team_description, team_id }) => {
                         return (
                             <GetCard
                                 name={team_name}
-                                description={team_description}  
+                                description={team_description}
+                                id={team_id}
+                                isBoard={false}
                             />
                         )
                     })}
