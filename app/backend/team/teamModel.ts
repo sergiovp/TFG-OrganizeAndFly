@@ -20,7 +20,7 @@ export async function addTeamDB(teamID: string, teamName: string, teamDescriptio
                 team_id: teamID
             })
         return await dataBase(TABLE_NAME)
-            .select('team_id', 'team_name')
+            .select('team_id', 'team_name', 'team_id')
             .first()
             .where(ID_DB_NAME, teamID);
     } catch (err) {
@@ -41,7 +41,7 @@ export async function getUserTeamsDB(userID: string) {
 export async function getTeamDB(teamID: string) {
     try {
         return await dataBase('teams')
-            .select('team_name', 'team_description')
+            .select('team_name', 'team_description', 'team_id')
             .where('team_id', teamID)
             .first()
     } catch (err) {
