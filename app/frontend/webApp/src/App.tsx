@@ -11,6 +11,8 @@ import generateStore from './redux/store';
 import ProfilePage from './pages/profile/Profile';
 import LegalTextsPage from './pages/legalTexts/LegalTexts';
 import ErrorPage from './pages/error/errorPage';
+import BoardPage from './pages/boardPage/BoardPage';
+import TeamPage from './pages/teamPage/TeamPage';
 
 function App() {
 	const store = generateStore();
@@ -25,6 +27,8 @@ function App() {
 
 					<AuthenticatedRoute exact path={ '/home' } component={ MainWrapperPage } />
 					<AuthenticatedRoute exact path={ '/profile' } component={ ProfilePage } />
+					<AuthenticatedRoute exact path={ '/board/:id' } component={ BoardPage } />
+					<AuthenticatedRoute exact path={ '/team/:id' } component={ TeamPage } />
 
 					<Route exact path={ '/legaltexts' } component={ LegalTextsPage } />
 					<Route path={'*'} component={ ErrorPage } />
