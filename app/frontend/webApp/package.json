@@ -47,6 +47,7 @@
     "@types/react-router-dom": "^5.1.7",
     "bootstrap": "^4.6.0",
     "react-bootstrap": "^1.5.2",
+    "react-rainbow-components": "^1.27.0",
     "react-social-icons": "^5.1.1",
     "redux-devtools": "^3.7.0",
     "redux-devtools-extension": "^2.13.9",
