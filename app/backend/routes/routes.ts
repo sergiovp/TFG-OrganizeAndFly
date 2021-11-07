@@ -159,6 +159,43 @@ router.get('/team/:teamID',
         res.status(status.Success).send(response);
 });
 
+router.get('/teamParticipants/:teamID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const teamID = req.params.teamID;
+
+        const response = await teamController.getTeamParticipants(teamID);
+
+        res.status(status.Success).send(response);
+});
+
+router.put('/team/:teamID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const teamID = req.params.teamID;
+    const { name, description } = req.body;
+
+    const response = await teamController.setTeam(teamID, name, description);
+
+    res.status(status.Success).send(response);
+});
+
+router.delete('/team/:teamID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const teamID = req.params.teamID;
+
+    const response = await teamController.deleteTeam(teamID);
+
+    res.status(status.Success).send('ok');
+});
+
+router.delete('/leaveTeam/:userID/:teamID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const userID = req.params.userID;
+    const teamID = req.params.teamID;
+
+    const response = await teamController.leaveTeam(userID, teamID);
+
+    res.status(status.Success).send('ok');
+});
+
 /************************
  * Board's routes:
  ***********************/
