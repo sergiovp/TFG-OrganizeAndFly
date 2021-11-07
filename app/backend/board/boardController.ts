@@ -18,3 +18,21 @@ export async function getUserBoards(userID: string) {
     return boardInfo;
 }
 
+export async function getBoard(boardID: string) {
+    const boardInfo = await boardModel.getBoardDB(boardID);
+
+    return boardInfo;
+}
+
+export async function deleteBoard(boardID: string) {
+    const response = boardModel.deleteBoardDB(boardID);
+
+    return response;
+}
+
+export async function setBoard(boardID: string, name: string, description: string) {
+    const response = boardModel.setBoardDB(boardID, name, description);
+
+    return response;
+}
+
