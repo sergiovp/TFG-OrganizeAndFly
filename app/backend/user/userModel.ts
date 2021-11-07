@@ -75,3 +75,66 @@ export async function getProfileDB(userID: string): Promise<any> {
         return getBDError(err);
     }
 }
+
+export async function getUserEmailDB(userEmail: string) {
+    try {
+        return dataBase('users')
+        .select('email')
+            .first()
+            .where('email', userEmail)
+    } catch (err) {
+        return getBDError(err);
+    }
+}
+
+export async function getParticipantsDB(boardID: string) {
+    try {
+        return dataBase('user_board')
+            .where('board_id', boardID)
+    } catch (err) {
+        return getBDError(err);
+    }
+}
+
+export async function addParticipantDB(userID: string, boardID: string) {
+    try {
+        return await dataBase('user_board')
+            .insert({user_id: userID, board_id: boardID})
+    } catch (err) {
+        return getBDError(err);
+    }
+}
+
+export async function getUserIDByEmail(userEmail: string) {
+    try {
+        return await dataBase('users')
+            .select('user_id')
+            .first()
+            .where('email', userEmail)
+    } catch (err) {
+        return getBDError(err);
+    }
+}
+
+export async function getUserEmailByID(userID: string) {
+    try {
+        return await dataBase('users')
+            .select('email')
+            .first()
+            .where('user_id', userID);
+    } catch (err) {
+        return getBDError(err);
+    }
+}
+
+export async function addParticipantTeamDB(userID: string, teamID: string) {
+    try {
+        return await dataBase('user_team')
+            .insert({
+                'user_id': userID,
+                'team_id': teamID
+            })
+    } catch (err) {
+        return getBDError(err);
+    }
+}
