@@ -5,10 +5,12 @@ import HomeAuthPage from '../homeAuth/HomeAuth';
 export default function MainWrapperPage() {
 
     return (
-        <>
-            <NavAuth />
-            <HomeAuthPage />
-            <Footer />
-        </>
+        <div className={'wrapper'}>
+            <div className={'internal-wrapper'}>
+                <NavAuth />
+                <HomeAuthPage />
+                <Footer />
+            </div>
+        </div>
     );
 }
