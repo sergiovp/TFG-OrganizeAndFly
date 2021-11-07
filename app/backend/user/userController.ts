@@ -158,3 +158,40 @@ export async function getProfile(userID: string): Promise<any> {
     }
     return userData;
 }
+
+export async function getUserEmail(userEmail: string) {
+    const res = await userModel.getUserEmailDB(userEmail);
+    
+    if (!res) {
+        return {status: 404, res}
+    }
+
+    return res;
+}
+
+export async function getParticipants(boardID: string) {
+    const userInfo  = await userModel.getParticipantsDB(boardID);
+    const usersEmail = [];
+
+    for (let user of userInfo) {
+        usersEmail.push(await userModel.getUserEmailByID(user.user_id));
+    }
+
+    return usersEmail;
+}
+
+export async function addParticipant(userEmail: string, boardID: string) {
+    const userID = await userModel.getUserIDByEmail(userEmail);
+
+    const response = await userModel.addParticipantDB(userID.user_id, boardID);
+
+    return response;
+}
+
+export async function addParticipantTeam(userEmail: string, teamID: string) {
+    const userID = await userModel.getUserIDByEmail(userEmail);
+
+    const response = await userModel.addParticipantTeamDB(userID.user_id, teamID);
+
+    return response;
+}
