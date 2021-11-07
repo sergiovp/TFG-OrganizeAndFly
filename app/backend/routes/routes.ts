@@ -292,4 +292,58 @@ router.delete('/leaveBoard/:userID/:boardID', verifyUser, verifyUserToken, async
     res.status(status.Success).send('ok');
 });
 
+/************************
+ * List's routes:
+ ***********************/
+
+router.post('/list',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const { listName, listDescription, boardId } = req.body;
+
+        const response = await listController.addList(listName, listDescription, boardId);
+
+        res.status(status.Success).send(response);
+});
+
+router.get('/lists/:boardID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const boardID = req.params.boardID;
+
+        const response = await listController.getBoardLists(boardID);
+
+        res.status(status.Success).send(response);
+});
+
+router.get('/list/:listID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const listID = req.params.listID;
+
+        const response = await listController.getList(listID);
+
+        res.status(status.Success).send(response);
+});
+
+router.delete('/list/:listID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const listID = req.params.listID;
+
+    const response = await listController.deleteList(listID);
+
+    res.status(status.Success).send('ok');
+});
+
+router.put('/list/:listID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const listID = req.params.listID;
+    const { name, description } = req.body;
+
+    const response = await listController.setList(listID, name, description);
+
+    res.status(status.Success).send('response');
+});
+
 export default router;
