@@ -211,6 +211,39 @@ router.post('/board',
         res.status(status.Success).send(response);
 });
 
+router.post('/boardTeam',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const { boardName, boardDescription, userID, teamID } = req.body;
+
+        const response = await boardController.addBoardTeam(boardName, boardDescription, teamID, userID);
+
+        res.status(status.Success).send(response);
+});
+
+router.get('/boardsTeam/:teamID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const teamID = req.params.teamID;
+
+        const response = await boardController.getTeamBoards(teamID);
+
+        res.status(status.Success).send(response);
+});
+
+router.get('/isBoardTeam/:boardID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const boardID = req.params.boardID;
+
+        const response = await boardController.isBoardTeam(boardID);
+
+        res.status(status.Success).send(response);
+});
+
 router.get('/boards/:userID',
     verifyUser,
     verifyUserToken,
@@ -231,6 +264,32 @@ router.get('/board/:boardID',
         const response = await boardController.getBoard(boardID);
 
         res.status(status.Success).send(response);
+});
+
+router.delete('/board/:boardID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const boardID = req.params.boardID;
+
+    const response = await boardController.deleteBoard(boardID);
+
+    res.status(status.Success).send('ok');
+});
+
+router.put('/board/:boardID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const boardID = req.params.boardID;
+    const { name, description } = req.body;
+
+    const response = await boardController.setBoard(boardID, name, description);
+
+    res.status(status.Success).send('ok');
+});
+
+router.delete('/leaveBoard/:userID/:boardID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const userID = req.params.userID;
+    const boardID = req.params.boardID;
+
+    const response = await boardController.leaveBoard(userID, boardID);
+
+    res.status(status.Success).send('ok');
 });
 
 export default router;
