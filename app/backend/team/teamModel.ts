@@ -50,13 +50,55 @@ export async function getTeamDB(teamID: string) {
 }
 
 export async function setTeamDB(teamID: string, teamName: string, teamDescription: string) {
-
+    try {
+        await dataBase('teams')
+            .first()
+            .where('team_id', teamID)
+            .update({
+                'team_name': teamName,
+                'team_description': teamDescription
+            })
+        return await dataBase('teams')
+            .select('team_id', 'team_name', 'teamDescription')
+            .first()
+            .where('team_id', teamID);
+    } catch (err) {
+        return getBDError(err);
+    }
 }
 
-export async function deleteTeamDB(teadID: string) {
-
+export async function deleteTeamDB(teamID: string) {
+    try {
+        return await dataBase('teams')
+            .first()
+            .where({
+                'team_id': teamID
+            })
+            .del();
+    } catch (err) {
+        getBDError(err);
+    }
 }
 
-export async function addTeamMemberDB(teamID: string, userEmail: string) {
+export async function getTeamParticipantsDB(teamID: string) {
+    try {
+        return await dataBase('user_team')
+            .where({'team_id': teamID})
+    } catch (err) {
+        return getBDError(err);
+    }
+}
 
+export async function removeUserInTeamDB(userID: string, teamID: string) {
+    try {
+        return await dataBase('user_team')
+            .first()
+            .where({
+                'user_id': userID,
+                'team_id': teamID
+            })
+            .del();
+    } catch (err) {
+        return getBDError(err);
+    }
 }
