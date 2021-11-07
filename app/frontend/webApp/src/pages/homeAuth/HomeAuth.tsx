@@ -5,7 +5,6 @@ import { useSelector, RootStateOrAny } from 'react-redux';
 import DefaultModal from '../../components/defaultModal/DefaultModal';
 
 import group from '../../public/images/group.png';
-import shared from '../../public/images/shared.png'
 import personal from '../../public/images/personal.png'
 
 import './style.css';
@@ -18,6 +17,25 @@ enum Component {
     'BOARD' = 'board',
     'TEAM' = 'team'
 };
+
+export function GetCard({name, description, id, isBoard}: any) {
+    return (
+        <Card
+            className="full-card text-center"
+            style={{ width: '18rem' }}
+            border="secondary"
+            key={name}
+        >
+            <Card.Header as="h5">{name}</Card.Header>
+            <Card.Body>
+                <Card.Text>
+                    {description}
+                </Card.Text>
+                <Card.Link href={isBoard ? '/board/' + id : '/team/' + id}>Go to "{name}"</Card.Link>
+            </Card.Body>
+        </Card>
+    )
+}
 
 export default function HomeAuthPage() {
     // Retrieve the user session information.
@@ -58,25 +76,6 @@ export default function HomeAuthPage() {
 
     const handleCloseTeamModal = () => {
         setShowTeamModal(false);
-    }
-
-    function GetCard({name, description, id, isBoard}: any) {
-        return (
-            <Card
-                className="full-card text-center"
-                style={{ width: '18rem' }}
-                border="secondary"
-                key={name}
-            >
-                <Card.Header as="h5">{name}</Card.Header>
-                <Card.Body>
-                    <Card.Text>
-                        {description}
-                    </Card.Text>
-                    <Card.Link href={isBoard ? '/board/' + id : '/team/' + id}>Go to "{name}"</Card.Link>
-                </Card.Body>
-            </Card>
-        )
     }
 
     return (
