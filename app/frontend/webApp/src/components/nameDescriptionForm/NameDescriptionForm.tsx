@@ -1,8 +1,9 @@
 import { SyntheticEvent, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useSelector, RootStateOrAny } from 'react-redux';
-import { addBoard } from '../../requests/boardRequests';
+import { addBoard, addBoardTeam } from '../../requests/boardRequests';
 import { addTeam } from '../../requests/teamRequests';
+import { addList } from '../../requests/listRequests';
 
 import './styles.css';
 
@@ -17,6 +18,8 @@ interface Props {
     component: any
     setShow: any
     setReload: any
+    boardId?: string
+    teamID?: string
 }
 
 // Form component that includes name and description inputs.
@@ -48,6 +51,17 @@ export default function NameDescriptionForm(props: Props) {
             props.setShow(false);
 
             await addTeam(name, description, userInfo.token, userInfo.id);
+        }
+        else if (props.component === 'list') {
+            props.setShow(false);
+
+           await addList(name, description, props.boardId || '', userInfo.token);
+        }
+        else if (props.component === 'boardTeam') {
+            if (props.teamID) {
+                props.setShow(false);
+                await addBoardTeam(name, description, userInfo.token, props.teamID, userInfo.id);
+            }
         }
 
         props.setReload(false);
