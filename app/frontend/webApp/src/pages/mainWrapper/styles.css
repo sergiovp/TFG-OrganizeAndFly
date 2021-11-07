@@ -1,0 +1,9 @@
+.wrapper {
+    position: relative;
+    min-height: 100vh;
+    margin-bottom: 0;
+}
+
+.internal-wrapper {
+    padding-bottom: 18rem;
+}

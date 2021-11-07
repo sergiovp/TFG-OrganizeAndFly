@@ -4,6 +4,8 @@
     border-color: #302c9b;
     padding: 1px;
     border-radius: 3px;
+    height: 10em;
+    margin-bottom: 2em;
 }
 
 .Task__body-card {
@@ -18,10 +20,11 @@
     text-align: left;
     margin-bottom: 0;
     font-family: 'Rubik', sans-serif;
+    height: 7em;
 }
 
 .Task__scroll-bar {
-    height: 50px;
+    height: 8em;
     overflow-y: auto;
 }
 
@@ -46,4 +49,9 @@
         color-stop(0.44, rgb(122,153,217)),
         color-stop(0.72, rgb(73,125,189)),
         color-stop(0.86, rgb(28,58,148)));
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
 }

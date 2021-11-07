@@ -1,15 +1,11 @@
-.board-container {
-
-}
-
-.name-row > h1 {
+.name-row h1 {
     font-weight: bold;
     font-size: 2em;
     text-decoration: underline;
     color: darkblue;
 }
 
-.description-row > h5 {
+.description-row h5 {
     font-weight: bold;
     font-size: 1.2em;
 }
@@ -17,4 +13,46 @@
 .list-btn {
     margin-bottom: 2em;
     margin-top: 2em;
+}
+
+.description-row button {
+    margin-right: 1.2em;
+}
+
+.list-row {
+    display: flex;
+    margin-bottom: 2em;
+}
+
+.list-col {
+    border: groove;
+    border-color: #f5f5f5;
+    border-radius: 10px;
+    overflow-y: auto;
+    height: 38em;
+}
+
+.list-name {
+    margin-top: 0.2em;
+}
+
+.btn-task {
+    margin-bottom: 2em;
+}
+
+.error-msg {
+    color: red;
+}
+
+.edit-title {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
 }
