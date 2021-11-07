@@ -89,6 +89,39 @@ router.get('/user/:userEmail', verifyUserToken, async function (req: express.Req
     res.status(response.status || status.Success).send(response);
 });
 
+router.get('/participants/:boardID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const boardid = req.params.boardID;
+
+        const response = await userController.getParticipants(boardid)
+
+        res.status(status.Success).send(response);
+});
+
+router.post('/participant/',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const { userEmail, boardID } = req.body;
+
+        const response = await userController.addParticipant(userEmail, boardID);
+
+        res.status(status.Success).send(response);
+});
+
+router.post('/participantTeam/',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const { userEmail, teamID } = req.body;
+
+        const response = await userController.addParticipantTeam(userEmail, teamID);
+
+        res.status(status.Success).send(response);
+});
+
 /************************
  * Team's routes:
  ***********************/
