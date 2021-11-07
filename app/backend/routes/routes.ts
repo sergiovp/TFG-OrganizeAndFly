@@ -346,4 +346,46 @@ router.put('/list/:listID', verifyUser, verifyUserToken, async function (req: ex
     res.status(status.Success).send('response');
 });
 
+/************************
+ * Task's routes:
+ ***********************/
+
+router.post('/task',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const { taskName, taskDescription, taskPriority, year, month, day, listID } = req.body;
+
+        const response = await taskController.addTask(taskName, listID, taskDescription, taskPriority, year, month, day);
+
+        res.status(status.Success).send(response);
+});
+
+router.get('/tasks/:listID',
+    verifyUser,
+    verifyUserToken,
+    async function (req: express.Request, res: express.Response): Promise<any> {
+        const listID = req.params.listID;
+        const response = await taskController.getListTasks(listID);
+
+        res.status(status.Success).send(response);
+});
+
+router.put('/task/:taskID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const taskID = req.params.taskID;
+    const { name, description, priority, deadLine, listID } = req.body;
+
+    const response = await taskController.setTask(taskID, name, description, priority, deadLine, listID);
+
+    res.status(status.Success).send(response);
+});
+
+router.delete('/task/:taskID', verifyUser, verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const taskID = req.params.taskID;
+
+    const response = await taskController.deleteTask(taskID);
+
+    res.status(status.Success).send('ok');
+});
+
 export default router;
