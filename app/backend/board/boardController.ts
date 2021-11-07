@@ -7,18 +7,6 @@ export async function addBoard(boardName: string, boardDescription: string, user
     return await boardModel.addBoardDB(boardID, boardName, boardDescription, userID);
 }
 
-export async function setBoard(boardID: string, boardName?: string, boardDescription?: string) {
-
-}
-
-export async function deleteBoard(boardID: string) {
-
-}
-
-export async function shareBoard(boardID: string, userEmail: string) {
-
-}
-
 export async function getUserBoards(userID: string) {
     const boardsIDs = await boardModel.getUserBoardsDB(userID);
     let boardInfo = [];
@@ -30,8 +18,3 @@ export async function getUserBoards(userID: string) {
     return boardInfo;
 }
 
-export async function getBoard(boardID: string) {
-    const boardInfo = await boardModel.getBoardDB(boardID);
-
-    return boardInfo;
-}
