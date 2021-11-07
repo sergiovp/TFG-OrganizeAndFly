@@ -3,6 +3,8 @@ import * as userController from '../user/userController';
 import * as sessionController from '../session/sessionController';
 import * as teamController from '../team/teamController';
 import * as boardController from '../board/boardController';
+import * as listController from '../list/listController';
+import * as taskController from '../task/taskController';
 import status from '../helpers/statusCodes';
 import { verifyUserToken, verifyUser } from '../middlewares/verifyAuth';
 
@@ -77,6 +79,14 @@ router.get('/profile/:userID', verifyUserToken, async function (req: express.Req
     const response = await userController.getProfile(userID);
 
     res.status(response.status || status.Success).send(response.msg || response);
+});
+
+router.get('/user/:userEmail', verifyUserToken, async function (req: express.Request, res: express.Response): Promise<any> {
+    const userEmail = req.params.userEmail;
+
+    const response = await userController.getUserEmail(userEmail);
+
+    res.status(response.status || status.Success).send(response);
 });
 
 /************************
