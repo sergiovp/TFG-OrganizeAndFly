@@ -10,6 +10,8 @@ interface Props {
     component: any
     setShow: any
     setReload: any
+    boardId?: string
+    teamID?: string
 }
 
 export default function DefaultModal(props: Props ) {
@@ -30,6 +32,8 @@ export default function DefaultModal(props: Props ) {
                     namePlaceholder={props.namePlaceholder}
                     component={props.component}
                     setReload={props.setReload}
+                    boardId={props.boardId}
+                    teamID={props.teamID}
                 />
             </Modal.Body>
         </Modal>
