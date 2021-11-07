@@ -1,9 +1,7 @@
 import { Navbar, Nav, Row, Col } from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 import logo from '../../public/images/logo.png';
-import notificationOn from '../../public/images/notificationOn.png';
 import profile from '../../public/images/profile.png';
-import settins from '../../public/images/settins.png';
 import { useHistory } from "react-router-dom";
 import { logOut } from '../../requests/userRequests';
 import './styles.css';
@@ -43,8 +41,6 @@ export default function NavAuth() {
                     </Nav>
                     <Row className={`${COMP_NAME}__nav-items`}>
                         <Navbar.Brand href="/profile"><img src={profile} alt="profile icon"/></Navbar.Brand>
-                        <Navbar.Brand href="/"><img src={notificationOn} alt="notification icon"/></Navbar.Brand>
-                        <Navbar.Brand href="/"><img src={settins} alt="Logo"/></Navbar.Brand>
                         <Col><Button variant="outlined" color="secondary" onClick={handleSignOutClick}>SignOut</Button></Col>
                     </Row>
                 </Navbar.Collapse>
