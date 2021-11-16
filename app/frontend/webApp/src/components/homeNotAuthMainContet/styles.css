@@ -49,3 +49,11 @@
     height: 15em;
     width: 20em;
 }
+
+#main-p {
+    font-size: 1.3em;
+}
+
+.text-secundary {
+    font-size: 1.1em;
+}

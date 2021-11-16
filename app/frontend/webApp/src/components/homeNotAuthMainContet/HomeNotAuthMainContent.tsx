@@ -15,14 +15,10 @@ export default function HomeNotAuthMainContent() {
                 <Col md="7" className={`${COMP_NAME}__txt-container`}>
                     <h2>Hi, there!</h2>
                     <h3>Welcome to Organize&amp;Fly</h3>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna 
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse 
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-                        anim id est laborum."
+                    <p id={'main-p'}>
+                        In the middle of the technological era, it sounds like a “joke” to imaginehaving to carry an agenda with you 
+                        at all times to keep organized and beable to plan your tasks. However, there is an element that almost everyonecarries 
+                        with them daily, we refer to the mobile phone.
                     </p>
                 </Col>
                 <Col md="5" sm="12" className={`${COMP_NAME}__img-container`}>
@@ -34,16 +30,17 @@ export default function HomeNotAuthMainContent() {
                     <img id="home" src={home} alt="Home"/>
                 </Col>
                 <Col md="5" className={'text-secundary'}>
-                    <h2>Hi, there!</h2>
-                    <h3>Welcome to Organize&amp;Fly</h3>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna 
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse 
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-                        anim id est laborum."
+                    <p>
+                        Organize&Fly is defined as an organization and planning web application. Not only aimed at individual people,
+                        but also for small groups of peopleor even large work teams. From your daily tasks to the work of each personin
+                        a company, through to the household chores together with the family, canbe organized with the application.
+                    </p>
+                    <p>
+                        Create tasks and organize them in lists according to their progress. Youcan also create dashboards to keep your
+                        tasks even more under control.
+                    </p>
+                    <p>
+                        The best thing about it? It is accessible from any device with internetaccess.
                     </p>
                 </Col>
             </Row>
