@@ -629,6 +629,20 @@ export default function Board(props: Props) {
                     );
                 })}
             </Row>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </Container>
     );
 }

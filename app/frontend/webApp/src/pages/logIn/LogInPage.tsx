@@ -5,6 +5,11 @@ export default function LogInPage() {
     return (
         <>
             <LogIn />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <Footer />
         </>
     );

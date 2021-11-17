@@ -358,6 +358,16 @@ export default function Team(props: Props) {
                     />
                 </Col>
             </Row>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </Container>
     );
 }

@@ -144,6 +144,16 @@ export default function HomeAuthPage() {
                     />
                 </Row>
             </Col>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </Container>
     );
 }
